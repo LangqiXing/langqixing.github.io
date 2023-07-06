@@ -1,7 +1,7 @@
 ---
 title: "Purple and Pink Seaside"
 excerpt: "This photo was shot on the edge of a cliff during my freshman year at UCSB. It was one of the most beautiful scenes I have ever seen.
- 1<br/><img src='/images/sb.png'>"
+<br/><img src='/images/sb.png'>"
 collection: portfolio
 ---
 
