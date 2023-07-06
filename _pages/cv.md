@@ -9,6 +9,9 @@ redirect_from:
 
 {% include base_path %}
 
+[Download CV here](/Users/michaelxing/langqixing.github.io/files/Langqi Xing's CV.pdf)
+
+<!-- 
 Education
 ======
 * B.S. in GitHub, GitHub University, 2012
@@ -56,4 +59,5 @@ Teaching
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Currently signed in to 43 different slack teams 
+-->
