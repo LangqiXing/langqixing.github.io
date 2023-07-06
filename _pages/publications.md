@@ -5,12 +5,13 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if author.googlescholar %}
-  You can also find my articles on <u><a href="{{author.googlescholar}}">my Google Scholar profile</a>.</u>
-{% endif %}
+## Dip Coating
+This work provide an overview of my research in fluid mechanics at dip coating techniques on fiber suspensions
+for mechanical engineering.
 
-{% include base_path %}
+*D.-H. Jeong, **L. Xing**, M. Ka Ho Lee, N. Vani, & A. Sauret (2023). "Deposition and alignment of fiber suspensions by dip coating."
+<i>Journal of Colloid and Interface Science, 650(A). </i> Full text available at <a href="https://www.sciencedirect.com/science/article/pii/S0021979723012079?via%3Dihub"> JGR </a>.
 
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+## Particulate Suspension Coating
+This work provide an overview of my research in fluid mechanics at particulate suspension techniques
+for mechanical engineering.
