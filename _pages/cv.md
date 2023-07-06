@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-[Download CV here](https://langqixing.github.io/files/Langqi Xing's CV.pdf)
+[Download CV here](https://langqixing.github.io/files/cv.pdf)
 
 <!-- 
 Education
