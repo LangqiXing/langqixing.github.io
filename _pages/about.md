@@ -1,15 +1,13 @@
 ---
 permalink: /
 title: "👋 Hi there, I am Langqi!"
-<!-- 
-excerpt: "👋 Hi there, I am Langqi!"
--->
+excerpt: "About me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-
+![Lilopic] (/images/Lilopic.png){: .align-right width="300px"}
 ⚙️ I am currently a first-year Ph.D. student majoring in Mechanical and 
 Industrial Engineering at Northeastern University. 
 
