@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Langqi's website"
+title                    : "Langqi's Homepage"
 title_separator          : "-"
 name                     : &name "Langqi Xing"
 description              : &description "PhD student at NEU"
