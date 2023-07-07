@@ -7,6 +7,9 @@ redirect_from:
   - /about/
   - /about.html
 ---
+## Continuity Equation
+$`\frac{\partial \rho}{\partial t} + \overrightarrow{\nabla}\cdot(\rho\overrightarrow{u})=0 \end{equation}`$
+
 Langqi (Michael) Xing is a first-year Ph.D. student majoring in Mechanical and 
 Industrial Engineering at Northeastern University. He is interested in Particulate 
 clogging, microfluidic approach, capillary flows of complex fluids, and granular 
