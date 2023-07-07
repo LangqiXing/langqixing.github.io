@@ -10,7 +10,7 @@ redirect_from:
   - /about.html
 ---
 
-![Lilo] (/images/Lilopic.png){: .align-right width="300px"}
+![Lilopic] (/images/Lilopic.png){: .align-right width="300px"}
 ⚙️ I am currently a first-year Ph.D. student majoring in Mechanical and 
 Industrial Engineering at Northeastern University. 
 
