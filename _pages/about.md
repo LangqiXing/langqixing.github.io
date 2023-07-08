@@ -27,5 +27,3 @@ in the band. I also loves playing basketball with friends.
 
 ## 🌍 Research Assistant
 I have experience contributing to [C-Thru Global Project](https://www.c-thru.org/) a 3-year, US $4m, international research project which aims to deliver carbon clarity for the global petrochemical sector.
-
-lalala
