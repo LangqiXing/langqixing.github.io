@@ -22,5 +22,3 @@ Chemical Engineers (AIChE). In my spare time, I enjoy writing songs and rehearse
 in the band. I also loves playing basketball with friends.
 
 👬 I am willing to assisting others on their path in the world of microfluidics and academia.
-
-# Selected Experience
