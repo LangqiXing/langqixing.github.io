@@ -7,7 +7,7 @@ author_profile: true
 Projects
 ======
 ## 🤖 <i> Fabric Pneumatic Artificial Muscle with a Gripper 
-<i> **L. Xing**, Yuchen Xi </i>
+<i> **L. Xing**, Y. Xi </i>
 
 - Presented an extensive and robust soft robot made of the pneumatic artificial muscle and the universal grippers
 - Behaved like a pneumatic muscle and a universal gripper when pressurized
@@ -16,7 +16,7 @@ Projects
 [Download PDF file here](https://langqixing.github.io/files/ME125EHReport.pdf)
 
 ## 🧪 <i> Production of Benzene by Hydrodealkylation of Toluene
-<i> **L. Xing**, Selina Liu, Yunus Ross </i>
+<i> **L. Xing**, S. Liu, Y. Ross </i>
 
 - Designed a conceptual process and techno economic analysis for the conversion of
 propane and bromine to produce 100 kta of propylene in Alkyl Products Limited Company
@@ -28,7 +28,7 @@ propane and bromine to produce 100 kta of propylene in Alkyl Products Limited Co
 [Download Presentation PowerPoint file here](https://langqixing.github.io/files/Group5ProductionofPropylenePresentation.pptx)
 
 ## 🧪 <i> Production of Benzene by Hydrodealkylation of Toluene
-<i> **L. Xing**, Selina Liu, Yunus Ross </i>
+<i> **L. Xing**, S. Liu, Y. Ross </i>
 
 - Designed a conceptual process and techno economic analysis for the conversion of
   toluene and hydrogen to produce 100 kta of benzene in Alkyl Products Limited Company
