@@ -1,9 +1,11 @@
 ---
 layout: archive
-title: "Sitemap"
+title: "Map"
 permalink: /sitemap/
 author_profile: true
 ---
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.2271972835697!2d-71.09144832410398!3d42.337679236515605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37a2242375c21%3A0x36cbd69c9cb6a03d!2sEgan%20Research%20Center!5e0!3m2!1sen!2sus!4v1688844097098!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
 <!-- 
 {% include base_path %}
 
