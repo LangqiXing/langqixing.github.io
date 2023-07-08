@@ -27,3 +27,16 @@ in the band. I also loves playing basketball with friends.
 
 ## 🌍 Research Assistant
 I have experience contributing to [C-Thru Global Project](https://www.c-thru.org/) a 3-year, US $4m, international research project which aims to deliver carbon clarity for the global petrochemical sector.
+I helped quantify the energy and emissions footprints of global chemical supply chains and identify
+technologies for rapid decarbonization. I also constructed, tested, and refined mass and energy balance models of chemical process systems, and
+develop technology databases
+
+## 🥤 R&D Engineer
+I have experience working in [PepsiCo](https://www.pepsico.com/#) as a research and development intern.
+I really enjoyed the good working atmosphere with a lot of delicious food. 😆 I helped 
+Leverage AI techniques such as EXCEL, Python Modules, and Power BI to abstract universal
+parameters and requirements for specific ingredients that are commonly used in PepsiCo. 
+I also enabled product developers a knowledge-based ingredient specification baseline for a new ingredient
+spec for their innovations
+
+![pepsico](/images/IMG_2100.png)![pepsico](/images/IMG_2162.png)
