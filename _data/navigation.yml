@@ -10,7 +10,6 @@ main:
     url: /portfolio/
     
   - title: "CV"
-    # url: /cv/
     url: /files/CV.pdf
 
   - # title: "Blog Posts"
