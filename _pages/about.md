@@ -39,7 +39,6 @@ parameters and requirements for specific ingredients that are commonly used in P
 I also enabled product developers a knowledge-based ingredient specification baseline for a new ingredient
 spec for their innovations
 
-| Delicious foods                            | Birthday gifts                           |
 | ----------------------------------- | ----------------------------------- |
 | ![pepsico](/images/IMG_2100.png) | ![pepsico](/images/IMG_2162.png) |
 
