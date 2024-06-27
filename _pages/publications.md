@@ -4,6 +4,10 @@ title: "Publications"
 permalink: /publications/
 author_profile: true
 ---
+## Granular Materials
+This work provide an overview of my research in fluid mechanics at granular collapse for mechanical engineering.
+R. S. Sharma, W. Sarlin, **L. Xing**, C. Morize, P. Gondret, & A. Sauret (2024). "The effects of interparticle cohesion on the collapse of granular columns."
+<i>Physical Review Fluids </i> Full text available at <a href="https://arxiv.org/abs/2402.07285"> PRF. </a>
 
 ## Dip Coating
 This work provide an overview of my research in fluid mechanics at dip coating techniques on fiber suspensions
