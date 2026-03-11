@@ -4,6 +4,12 @@ title: "Publications"
 permalink: /publications/
 author_profile: true
 ---
+## Particle Delivery
+
+This work provides an overview of my research in microfluidics on particle transport and control in dead-end channels for mechanical engineering.
+
+**L. Xing** and X. Tang. "Controlling particle dynamics in dead-end channels via boundary effects." Under Review. Nanoscale.
+
 ## Granular Materials
 This work provide an overview of my research in fluid mechanics at granular collapse for mechanical engineering.
 
