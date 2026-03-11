@@ -13,7 +13,7 @@ Projects
 - Behaved like a pneumatic muscle and a universal gripper when pressurized
 - Can lift objects up to 11 cm and move from left to right to about 11 cm
 
-![robot](/images/robot.jpg)
+![robot](https://langqixing.github.io/images/robot.jpg)
 
 [Download PDF file here](https://langqixing.github.io/files/ME125EHReport.pdf)
 
