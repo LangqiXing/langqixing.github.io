@@ -4,7 +4,7 @@ title: ""
 permalink: /research/
 author_profile: true
 ---
-Projects
+Projects done at UCSB
 ======
 ## 🤖 <i> Fabric Pneumatic Artificial Muscle with a Gripper 
 <i> **L. Xing**, Y. Xi </i>
