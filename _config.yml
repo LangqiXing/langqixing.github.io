@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Langqi's Homepage"
 title_separator          : "-"
 name                     : &name "Langqi Xing"
-description              : &description "Ph.D. student at NEU"
+description              : &description "Ph.D. candidate at NEU"
 url                      : https://langqixing.com/ # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "LangqiXing/langqixing.github.io"
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Langqi Xing"
   avatar           : "profile.png"
-  bio              : "PhD student at Northeastern University in Mechanical and Industrial Engineering"
+  bio              : "Ph.D. candidate at Northeastern University in Mechanical and Industrial Engineering"
   location         : "Boston, USA"
   employer         :
   pubmed           :
