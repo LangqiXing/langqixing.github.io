@@ -8,7 +8,8 @@ author_profile: true
 
 This work provides an overview of my research in microfluidics on particle transport and control in dead-end channels for mechanical engineering.
 
-**L. Xing** & X. Tang (2026). "Controlling particle dynamics in dead-end channels via boundary effects." <i>Nanoscale </i> Accepted.
+**L. Xing** & X. Tang (2026). "Controlling particle dynamics in dead-end channels via boundary effects."
+<i>Nanoscale, 2026, Advance Article. </i> Full text available at <a href="https://pubs.rsc.org/en/content/articlelanding/2026/nr/d6nr00004e"> Nanoscale. </a>
 
 ## Granular Materials
 This work provide an overview of my research in fluid mechanics at granular collapse for mechanical engineering.

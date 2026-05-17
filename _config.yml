@@ -223,13 +223,13 @@ defaults:
       comments: true
   # _research
   - scope:
-        path: ""
-        type: research
+      path: ""
+      type: research
     values:
-        layout: single
-        author_profile: true
-        share: true
-        comments: true
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
   # _publications
   - scope:
       path: ""
