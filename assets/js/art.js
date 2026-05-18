@@ -145,10 +145,129 @@
     else document.addEventListener('DOMContentLoaded', fn);
   }
 
+  /* ---------- Career trail ------------------------------------------ */
+  function initTrail() {
+    var trail = document.querySelector('[data-trail]');
+    if (!trail) return;
+
+    var stops = trail.querySelectorAll('[data-stop]');
+    if (!stops.length) return;
+
+    // Toggle expanded state on dot click.
+    stops.forEach(function (stop) {
+      var dot = stop.querySelector('.trail-stop__dot');
+      if (!dot) return;
+      dot.addEventListener('click', function () {
+        var willOpen = !stop.classList.contains('is-open');
+        // Close others first for a cleaner interaction.
+        stops.forEach(function (s) {
+          s.classList.remove('is-open');
+          var d = s.querySelector('.trail-stop__dot');
+          if (d) d.setAttribute('aria-expanded', 'false');
+        });
+        if (willOpen) {
+          stop.classList.add('is-open');
+          dot.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Animate the teal "progress" path as the section scrolls into view.
+    var fillPath = trail.querySelector('.trail__path-fill');
+    if (!fillPath || prefersReducedMotion || !('IntersectionObserver' in window)) {
+      if (fillPath) fillPath.style.strokeDasharray = 'none';
+      return;
+    }
+    var len = fillPath.getTotalLength();
+    fillPath.style.strokeDasharray = len;
+    fillPath.style.strokeDashoffset = len;
+
+    function updateFill() {
+      var rect = trail.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var start = vh * 0.85;
+      var end = vh * 0.25;
+      var t = (start - rect.top) / (start - end);
+      t = Math.max(0, Math.min(1, t));
+      fillPath.style.strokeDashoffset = len * (1 - t);
+    }
+
+    var ticking = false;
+    function onScrollFill() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        updateFill();
+        ticking = false;
+      });
+    }
+
+    updateFill();
+    window.addEventListener('scroll', onScrollFill, { passive: true });
+    window.addEventListener('resize', onScrollFill);
+  }
+
+  /* ---------- Splash entrance --------------------------------------- */
+  function initSplash() {
+    var splash = document.getElementById('lx-splash');
+    if (!splash) return;
+
+    // Skip if already shown in this session or user prefers reduced motion.
+    var SEEN_KEY = 'lx-splash-seen-v1';
+    var seen = false;
+    try { seen = sessionStorage.getItem(SEEN_KEY) === '1'; } catch (e) {}
+
+    if (seen || prefersReducedMotion) {
+      splash.parentNode.removeChild(splash);
+      return;
+    }
+
+    // Show
+    splash.hidden = false;
+    splash.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('lx-splash-on');
+    requestAnimationFrame(function () {
+      splash.classList.add('is-in');
+    });
+
+    var dismissed = false;
+    function dismiss() {
+      if (dismissed) return;
+      dismissed = true;
+      splash.classList.remove('is-in');
+      splash.classList.add('is-out');
+      document.documentElement.classList.remove('lx-splash-on');
+      try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (e) {}
+      setTimeout(function () {
+        if (splash.parentNode) splash.parentNode.removeChild(splash);
+        window.removeEventListener('scroll', onScroll, true);
+        window.removeEventListener('wheel', dismiss, { passive: true });
+        window.removeEventListener('keydown', onKey);
+        window.removeEventListener('touchstart', dismiss, { passive: true });
+      }, 700);
+    }
+
+    function onScroll() { dismiss(); }
+    function onKey(e) {
+      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') dismiss();
+    }
+
+    splash.addEventListener('click', dismiss);
+    window.addEventListener('scroll', onScroll, true);
+    window.addEventListener('wheel', dismiss, { passive: true });
+    window.addEventListener('touchstart', dismiss, { passive: true });
+    window.addEventListener('keydown', onKey);
+
+    // Auto-dismiss after the drawing finishes
+    setTimeout(dismiss, 4200);
+  }
+
   ready(function () {
+    initSplash();
     initReveal();
     initGalleryTabs();
     initHeroBackdrop();
     initMarquee();
+    initTrail();
   });
 }());

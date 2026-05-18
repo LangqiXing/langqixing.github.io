@@ -30,6 +30,71 @@ in the band. I also loves playing basketball with friends.
 
 - **Feb 12, 2026** — Featured by Northeastern University's College of Engineering in ["Engineering Faster Drug Delivery: A PhD Journey in Fluid Mechanics"](https://coe.northeastern.edu/news/engineering-faster-drug-delivery-a-phd-journey-in-fluid-mechanics/), a story about my Ph.D. journey and research on microfluidic strategies for faster drug delivery.
 
+<section class="trail" aria-label="Career timeline" data-reveal>
+  <header class="trail__header">
+    <p class="film-kicker">Trajectory</p>
+    <h2 class="no-rule">From the West Coast to Boston</h2>
+  </header>
+  <div class="trail__rail" data-trail>
+    <svg class="trail__curve" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+      <path class="trail__path" d="M30 70 C 180 30, 320 110, 480 60 S 780 30, 970 70" fill="none" stroke="#b6892c" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"/>
+      <path class="trail__path-fill" d="M30 70 C 180 30, 320 110, 480 60 S 780 30, 970 70" fill="none" stroke="#2f7d7a" stroke-width="2.6" stroke-linecap="round"/>
+    </svg>
+    <ol class="trail__stops">
+      <li class="trail-stop" style="--at: 4%" data-stop>
+        <button class="trail-stop__dot" type="button" aria-expanded="false">
+          <span class="trail-stop__year">2018</span>
+        </button>
+        <div class="trail-stop__card">
+          <p class="trail-stop__when">2018 – 2022 · Santa Barbara</p>
+          <h3>UC Santa Barbara</h3>
+          <p>BS in Chemical Engineering, minor in History of Art & Architecture. First taste of capillary flows, granular collapse, and Sauret-lab fluid mechanics.</p>
+        </div>
+      </li>
+      <li class="trail-stop" style="--at: 28%" data-stop>
+        <button class="trail-stop__dot" type="button" aria-expanded="false">
+          <span class="trail-stop__year">2021</span>
+        </button>
+        <div class="trail-stop__card">
+          <p class="trail-stop__when">2021 – 2022 · Global</p>
+          <h3>C-Thru Global Project</h3>
+          <p>Research assistant on a 3-year, US $4M project delivering carbon clarity for the global petrochemical sector — energy/emissions modeling, decarbonization tech databases.</p>
+        </div>
+      </li>
+      <li class="trail-stop" style="--at: 52%" data-stop>
+        <button class="trail-stop__dot" type="button" aria-expanded="false">
+          <span class="trail-stop__year">2022</span>
+        </button>
+        <div class="trail-stop__card">
+          <p class="trail-stop__when">Summer 2022 · Purchase, NY</p>
+          <h3>PepsiCo · R&D Intern</h3>
+          <p>Built AI-assisted ingredient specification baselines (Python, Power BI, Excel) for product developers — and ate a lot of test snacks. 🥤</p>
+        </div>
+      </li>
+      <li class="trail-stop" style="--at: 74%" data-stop>
+        <button class="trail-stop__dot" type="button" aria-expanded="false">
+          <span class="trail-stop__year">2022</span>
+        </button>
+        <div class="trail-stop__card">
+          <p class="trail-stop__when">2022 – present · Boston</p>
+          <h3>Northeastern University · PhD</h3>
+          <p>Mechanical & Industrial Engineering. Microfluidic strategies for drug delivery in clogged, dead-end vessels; tunable hydrogel beacons that sort and steer particles without pumps.</p>
+        </div>
+      </li>
+      <li class="trail-stop trail-stop--now" style="--at: 96%" data-stop>
+        <button class="trail-stop__dot" type="button" aria-expanded="false">
+          <span class="trail-stop__year">Now</span>
+        </button>
+        <div class="trail-stop__card">
+          <p class="trail-stop__when">2026 · Boston</p>
+          <h3>Today</h3>
+          <p>4th-year PhD candidate. Writing, mentoring, and getting transport times down from days to hours.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
 # Selected Experience
 
 ## 🌍 Research Assistant
