@@ -66,7 +66,7 @@ in the band. I also loves playing basketball with friends.
           <span class="trail-stop__year">2022</span>
         </button>
         <div class="trail-stop__card">
-          <p class="trail-stop__when">Summer 2022 · Purchase, NY</p>
+          <p class="trail-stop__when">Summer 2022 · Shanghai, China</p>
           <h3>PepsiCo · R&D Intern</h3>
           <p>Built AI-assisted ingredient specification baselines (Python, Power BI, Excel) for product developers — and ate a lot of test snacks. 🥤</p>
         </div>
