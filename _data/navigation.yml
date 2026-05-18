@@ -9,5 +9,8 @@ main:
   - title: "Gallery"
     url: /gallery/
 
+  - title: "Music"
+    url: /music/
+
   - title: "CV"
     url: /files/CV.pdf
