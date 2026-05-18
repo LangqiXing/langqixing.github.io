@@ -21,6 +21,10 @@ in the band. I also loves playing basketball with friends.
 
 👬 I am willing to assisting others on their path in the world of microfluidics and academia.
 
+# News
+
+- **Feb 12, 2026** — Featured by Northeastern University's College of Engineering in ["Engineering Faster Drug Delivery: A PhD Journey in Fluid Mechanics"](https://coe.northeastern.edu/news/engineering-faster-drug-delivery-a-phd-journey-in-fluid-mechanics/), a story about my Ph.D. journey and research on microfluidic strategies for faster drug delivery.
+
 # Selected Experience
 
 ## 🌍 Research Assistant
@@ -39,4 +43,3 @@ spec for their innovations
 
 | ----------------------------------- | ----------------------------------- |
 | ![pepsico](/images/IMG_2100.png) | ![pepsico](/images/IMG_2162.png) |
-
