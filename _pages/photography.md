@@ -1,14 +1,14 @@
 ---
 layout: archive
-title: "Film"
-permalink: /film/
+title: "Photography"
+permalink: /Photography/
 author_profile: true
 ---
 
 <section class="film-hero">
-  <p class="film-kicker">35mm notes</p>
+  <p class="film-kicker">35mm film</p>
   <h1>Film Photography</h1>
-  <p>A small visual notebook from my rolls of film: color, grain, light leaks, walks, friends, and the quiet in-between frames.</p>
+  <p>A small visual notebook from my rolls of film</p>
 </section>
 
 <section class="film-gallery" aria-label="Film photography gallery">
