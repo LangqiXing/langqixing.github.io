@@ -1,8 +1,10 @@
 ---
 layout: archive
 title: ""
-permalink: /research/
+permalink: /projects/
 author_profile: true
+redirect_from:
+  - /research/
 ---
 Projects done at UCSB
 ======
