@@ -955,7 +955,19 @@ a {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 140px;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.pub-art--photo {
+  border-radius: 4px;
+  filter: saturate(1.02);
+  transition: transform 0.4s ease, filter 0.4s ease;
+
+  .pub:hover & {
+    transform: scale(1.03);
+    filter: saturate(1.12);
+  }
 }
 
 .pub__body {
@@ -1305,29 +1317,31 @@ html.lx-splash-on { overflow: hidden; }
   filter: drop-shadow(0 14px 30px rgba($art-ink, 0.12));
 }
 
-/* Stroke draw animation: every .lx-line draws itself in sequence. */
+/* Stroke draw animation: every .lx-line draws itself in sequence.
+   Pacing is stretched so the full sketch takes ~11s, leaving a few
+   seconds for the caption to breathe before the 15s auto-dismiss. */
 .lx-splash__art .lx-line {
   stroke-dasharray: 600;
   stroke-dashoffset: 600;
-  animation: lx-draw 1.5s cubic-bezier(0.6, 0.05, 0.2, 1) forwards;
+  animation: lx-draw 2.4s cubic-bezier(0.6, 0.05, 0.2, 1) forwards;
 }
 
-.lx-splash__art .lx-line--1 { animation-delay: 0.1s; }
-.lx-splash__art .lx-line--2 { animation-delay: 0.55s; }
-.lx-splash__art .lx-line--3 { animation-delay: 1.0s; }
-.lx-splash__art .lx-line--4 { animation-delay: 1.4s; }
-.lx-splash__art .lx-line--5 { animation-delay: 1.8s; }
-.lx-splash__art .lx-line--6 { animation-delay: 2.2s; }
+.lx-splash__art .lx-line--1 { animation-delay: 0.4s; }
+.lx-splash__art .lx-line--2 { animation-delay: 1.7s; }
+.lx-splash__art .lx-line--3 { animation-delay: 3.2s; }
+.lx-splash__art .lx-line--4 { animation-delay: 4.8s; animation-duration: 2s; }
+.lx-splash__art .lx-line--5 { animation-delay: 6.6s; animation-duration: 2.2s; }
+.lx-splash__art .lx-line--6 { animation-delay: 8.6s; animation-duration: 1.6s; }
 
 .lx-splash__art .lx-text {
   opacity: 0;
-  animation: lx-fade 0.6s ease forwards;
+  animation: lx-fade 0.8s ease forwards;
 }
 
-.lx-splash__art .lx-text--1 { animation-delay: 1.2s; }
-.lx-splash__art .lx-text--2 { animation-delay: 1.7s; }
-.lx-splash__art .lx-text--3 { animation-delay: 1.4s; }
-.lx-splash__art .lx-text--4 { animation-delay: 2.5s; }
+.lx-splash__art .lx-text--1 { animation-delay: 4.4s; }
+.lx-splash__art .lx-text--2 { animation-delay: 6.6s; }
+.lx-splash__art .lx-text--3 { animation-delay: 2.8s; }
+.lx-splash__art .lx-text--4 { animation-delay: 10s; }
 
 @keyframes lx-draw {
   to { stroke-dashoffset: 0; }
@@ -1342,7 +1356,31 @@ html.lx-splash-on { overflow: hidden; }
   text-align: center;
   opacity: 0;
   transform: translateY(8px);
-  animation: lx-fade 0.7s ease 2.6s forwards;
+  animation: lx-fade 0.9s ease 11.4s forwards;
+}
+
+.lx-splash__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba($art-ink, 0.06);
+  overflow: hidden;
+}
+
+.lx-splash__progress-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, $art-teal, $art-gold 50%, $art-coral);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: lx-progress 15s linear forwards;
+}
+
+@keyframes lx-progress {
+  to { transform: scaleX(1); }
 }
 
 .lx-splash__kicker {

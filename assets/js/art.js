@@ -258,8 +258,9 @@
     window.addEventListener('touchstart', dismiss, { passive: true });
     window.addEventListener('keydown', onKey);
 
-    // Auto-dismiss after the drawing finishes
-    setTimeout(dismiss, 4200);
+    // Auto-dismiss after the full sketch + caption breath (matches CSS
+    // .lx-splash__progress-bar animation, 15s).
+    setTimeout(dismiss, 15000);
   }
 
   ready(function () {
