@@ -7,7 +7,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
-<div class="home-intro">
+<div class="home-intro" data-reveal>
   <div class="home-intro__copy">
     <p>⚙️ I am a fourth-year Ph.D. candidate majoring in Mechanical and Industrial Engineering at Northeastern University. I completed my bachelor’s degree in Chemical Engineering with a minor in History of Art and Architecture at UC Santa Barbara,</p>
   </div>
@@ -48,3 +48,21 @@ spec for their innovations
 
 | ----------------------------------- | ----------------------------------- |
 | ![pepsico](/images/IMG_2100.png) | ![pepsico](/images/IMG_2162.png) |
+
+<section class="film-marquee" data-marquee aria-label="From the film roll" data-reveal>
+  <p class="film-marquee__label">From the film roll <a class="film-marquee__more" href="/gallery/#film">see more →</a></p>
+  <div class="film-marquee__viewport">
+    <div class="marquee-track">
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-02.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-05.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-08.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-11.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-14.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-17.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-20.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-23.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-26.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-29.jpg" alt="" loading="lazy"></a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+layout: archive
+title: ""
+permalink: /gallery/
+author_profile: true
+redirect_from:
+  - /Photography/
+  - /photography/
+  - /portfolio/
+---
+
+{% include base_path %}
+
+<section class="film-hero" data-reveal>
+  <p class="film-kicker">Visual Notebook</p>
+  <h1 class="no-rule">Gallery</h1>
+  <p>A small archive of things I’ve looked at and made — film photographs from the rolls I’ve shot, and a few paintings from quieter afternoons.</p>
+  <nav class="gallery-tabs" aria-label="Gallery sections">
+    <a href="#film" class="gallery-tab is-active" data-tab="film">Film Photography</a>
+    <a href="#art" class="gallery-tab" data-tab="art">Paintings &amp; Art</a>
+  </nav>
+</section>
+
+<section id="film" class="gallery-section" data-reveal>
+  <header class="gallery-section__header">
+    <h2 class="no-rule">Film Photography</h2>
+    <p class="gallery-section__lede">35mm — moments that survived the roll.</p>
+  </header>
+  <div class="film-gallery" aria-label="Film photography gallery">
+    {% for i in (1..31) %}
+      {% assign n = i | prepend: '00' | slice: -2, 2 %}
+      <a class="film-frame" href="{{ base_path }}/images/film/slide-{{ n }}.jpg" data-reveal>
+        <img src="{{ base_path }}/images/film/slide-{{ n }}.jpg" alt="Film photograph {{ i }}" loading="lazy">
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="art" class="gallery-section gallery-section--art" data-reveal>
+  <header class="gallery-section__header">
+    <h2 class="no-rule">Paintings &amp; Art</h2>
+    <p class="gallery-section__lede">Brush, oil, and the occasional sunrise.</p>
+  </header>
+  <div class="art-grid">
+    {% for post in site.portfolio %}
+      <article class="art-card" data-reveal>
+        <a class="art-card__media" href="{{ base_path }}{{ post.url }}">
+          {% assign first_img = post.excerpt | split: "src='" | last | split: "'" | first %}
+          {% if first_img and first_img != "" %}
+            <img src="{{ base_path }}{{ first_img }}" alt="{{ post.title }}" loading="lazy">
+          {% endif %}
+        </a>
+        <div class="art-card__body">
+          <h3 class="art-card__title"><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+          {% assign excerpt_text = post.excerpt | strip_html | strip_newlines %}
+          <p class="art-card__excerpt">{{ excerpt_text | truncate: 180 }}</p>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
