@@ -32,7 +32,7 @@ author_profile: true
     <p class="pub__cite">
       R. S. Sharma, W. Sarlin, <strong>L. Xing</strong>, C. Morize, P. Gondret &amp; A. Sauret (2024). <em>“The effects of interparticle cohesion on the collapse of granular columns.”</em>
       <span class="pub__venue">Physical Review Fluids.</span>
-      <a class="pub__link" href="https://arxiv.org/abs/2402.07285">Read on PRF →</a>
+      <a class="pub__link" href="https://journals.aps.org/prfluids/abstract/10.1103/PhysRevFluids.9.074301">Read on PRF →</a>
     </p>
   </div>
 </article>
