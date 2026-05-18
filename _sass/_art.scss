@@ -212,7 +212,7 @@ a {
   #news {
     display: inline-flex;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0.1rem;
     padding: 0.2rem 0.72rem;
     border: 1px solid rgba($art-coral, 0.28);
     border-radius: 999px;
@@ -226,7 +226,7 @@ a {
 
   #news + ul {
     margin-left: 0;
-    padding: 1rem 1.1rem;
+    padding: 1rem 2.1rem;
     border-left: 4px solid $art-coral;
     border-radius: 0 8px 8px 0;
     background: rgba(#fff, 0.7);
