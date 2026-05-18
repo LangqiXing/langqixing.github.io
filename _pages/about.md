@@ -7,9 +7,14 @@ redirect_from:
   - /about/
   - /about.html
 ---
-![Lilopic](/images/Lilopic.png){: .align-right width="300px"}
-⚙️ I am a fourth-year Ph.D. candidate majoring in Mechanical and 
-Industrial Engineering at Northeastern University. I completed my bachelor’s degree in Chemical Engineering with a minor in History of Art and Architecture at UC Santa Barbara, 
+<div class="home-intro">
+  <div class="home-intro__copy">
+    <p>⚙️ I am a fourth-year Ph.D. candidate majoring in Mechanical and Industrial Engineering at Northeastern University. I completed my bachelor’s degree in Chemical Engineering with a minor in History of Art and Architecture at UC Santa Barbara,</p>
+  </div>
+  <figure class="home-intro__photo">
+    <img src="/images/Lilopic.png" alt="Lilo sitting by the window">
+  </figure>
+</div>
 
 🧪 My research focuses on improving drug delivery in clogged blood vessels, especially in dead-end vessel geometries where transport is very slow. By engineering solute concentration gradients and tailoring microchannel surface properties, I study how to control particle motion and significantly accelerate transport, reducing delivery times from days to hours. Building on this, I developed tunable hydrogel “beacons” that generate sustained chemical gradients to attract, repel, sort, and organize particles without pumps or external power. 
  
