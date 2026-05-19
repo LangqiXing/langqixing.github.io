@@ -2253,6 +2253,140 @@ html.lx-lightbox-on { overflow: hidden; }
 }
 
 /* ==========================================================================
+   Projects — figure + content cards (UCSB undergrad work)
+   ========================================================================== */
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin: 1.4rem 0 2rem;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: clamp(1rem, 2.4vw, 1.8rem);
+  align-items: stretch;
+  padding: 1.05rem 1.15rem;
+  border: 1px solid $art-line;
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(#fff, 0.86), rgba($art-wash, 0.45));
+  box-shadow: 0 0.8rem 1.8rem rgba($art-ink, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba($art-teal, 0.32);
+    box-shadow: 0 1.1rem 2.4rem rgba($art-ink, 0.12);
+  }
+}
+
+.project__figure {
+  margin: 0;
+  padding: 0.6rem;
+  border: 1px solid $art-line;
+  border-radius: 10px;
+  background: rgba(#fff, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 0.3s ease, transform 0.3s ease;
+
+  img, .project-art {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .project:hover & img {
+    transform: scale(1.02);
+  }
+}
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.project__title {
+  margin: 0.05rem 0 0.1rem;
+  padding: 0;
+  font-family: $serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+
+  &:before { display: none; }
+}
+
+.project__authors {
+  margin: 0;
+  font-size: 0.92rem;
+  color: $art-muted;
+}
+
+.project__bullets {
+  margin: 0.2rem 0 0.4rem;
+  padding-left: 1.2rem;
+
+  li {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 0.18rem;
+  }
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project__link {
+  display: inline-block;
+  margin-top: 0.2rem;
+  padding: 0.32rem 0.85rem;
+  border: 1px solid rgba($art-teal, 0.35);
+  border-radius: 999px;
+  color: darken($art-teal, 4%);
+  font-family: $sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  background: rgba(#fff, 0.6);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: rgba($art-teal, 0.12);
+    border-color: $art-teal;
+    color: darken($art-teal, 10%);
+    transform: translateX(2px);
+  }
+
+  &--alt {
+    border-color: rgba($art-coral, 0.42);
+    color: darken($art-coral, 4%);
+
+    &:hover {
+      background: rgba($art-coral, 0.12);
+      border-color: $art-coral;
+      color: darken($art-coral, 10%);
+    }
+  }
+}
+
+@include breakpoint(max-width $medium) {
+  .project { grid-template-columns: 1fr; }
+  .project__figure { max-height: 220px; }
+}
+
+/* ==========================================================================
    Publications — figure + content cards
    ========================================================================== */
 
