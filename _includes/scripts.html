@@ -14,8 +14,12 @@
 <script src="{{ base_path }}/assets/js/command-palette.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
 <script src="{{ base_path }}/assets/js/page-transition.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
 <script src="{{ base_path }}/assets/js/anchor-copy.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+<script src="{{ base_path }}/assets/js/signature.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
 {% if page.url contains '/publications/' %}
 <script src="{{ base_path }}/assets/js/cite-buttons.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+{% endif %}
+{% if page.url contains '/publications/' or page.url contains '/projects/' %}
+<script src="{{ base_path }}/assets/js/read-time.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
 {% endif %}
 {% if page.url contains '/gallery/' %}
 <script src="{{ base_path }}/assets/js/lightbox.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>

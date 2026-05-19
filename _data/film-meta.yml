@@ -1,0 +1,28 @@
+# Optional metadata for each film slide in /images/film/.
+# Keys are the zero-padded slide number ("01" through "31").
+# Any field can be left empty / omitted; missing entries simply don't
+# show in the lightbox. Fill in what you remember, leave the rest blank.
+#
+# Field reference:
+#   camera   : body + lens you used
+#   film     : film stock (e.g. "Kodak Portra 400")
+#   date     : free-form, "Spring 2024" or "2024-06-15"
+#   location : city / country / venue
+#   note     : a one-line caption
+
+"01":
+  # camera: ""
+  # film: ""
+  # date: ""
+  # location: ""
+  # note: ""
+
+"02":
+  # camera: ""
+  # film: ""
+
+"03":
+  # camera: ""
+
+# ...add entries as you remember them. Slides without entries just show
+# the alt text in the lightbox.

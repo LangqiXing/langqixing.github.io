@@ -2951,6 +2951,148 @@ html.lx-splash-on { overflow: hidden; }
 }
 
 /* ==========================================================================
+   Footer LX signature — draws itself when the footer scrolls into view
+   ========================================================================== */
+
+.lx-sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 1.4rem auto 0.8rem;
+  color: var(--art-ink);
+  opacity: 0.86;
+
+  svg {
+    width: 4rem;
+    height: auto;
+    overflow: visible;
+  }
+}
+
+.lx-sign__stroke {
+  /* JS sets the dasharray to the precise path length, but we set a sane
+     default so the strokes are hidden on first paint before JS runs. */
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.5, 0.05, 0.2, 1);
+}
+
+.lx-sign.is-inked .lx-sign__stroke--1 { stroke-dashoffset: 0; transition-delay: 0.05s; }
+.lx-sign.is-inked .lx-sign__stroke--2 { stroke-dashoffset: 0; transition-delay: 0.55s; }
+.lx-sign.is-inked .lx-sign__stroke--3 { stroke-dashoffset: 0; transition-delay: 1.0s; }
+
+.lx-sign__seal {
+  display: inline-block;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  background: $art-coral;
+  box-shadow: 0 0 0 0 rgba($art-coral, 0.4);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.4s ease 1.7s, transform 0.4s cubic-bezier(0.4, 1.4, 0.4, 1) 1.7s;
+}
+
+.lx-sign.is-inked .lx-sign__seal {
+  opacity: 1;
+  transform: scale(1);
+  animation: lx-seal-pulse 2.4s ease-out 2.2s infinite;
+}
+
+@keyframes lx-seal-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba($art-coral, 0.35); }
+  100% { box-shadow: 0 0 0 8px rgba($art-coral, 0); }
+}
+
+.lx-sign__caption {
+  margin: 0;
+  font-family: $serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--art-muted);
+  opacity: 0;
+  transition: opacity 0.6s ease 2.3s;
+}
+
+.lx-sign.is-inked .lx-sign__caption { opacity: 1; }
+
+/* ==========================================================================
+   Read-time badge
+   ========================================================================== */
+
+.lx-readtime {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 1.4rem;
+  padding: 0.28rem 0.75rem;
+  border: 1px solid var(--art-line);
+  border-radius: 999px;
+  background: var(--art-surface);
+  color: var(--art-muted);
+  font-family: $sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  /* When inserted right after a page title, give it a top break. */
+  & + & { display: none; }
+}
+
+.lx-readtime__dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: $art-teal;
+  box-shadow: 0 0 0 3px rgba($art-teal, 0.18);
+  animation: lx-rt-blink 2.4s ease-in-out infinite;
+}
+
+@keyframes lx-rt-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* ==========================================================================
+   Lightbox metadata block (camera / film / date / location)
+   ========================================================================== */
+
+.lx-lightbox__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.18rem 0.85rem;
+  margin: 0.7rem auto 0;
+  max-width: 32rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  color: rgba(#fff, 0.86);
+  font-family: $serif;
+  font-size: 0.82rem;
+
+  dt {
+    color: rgba(#fff, 0.55);
+    font-family: $sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    align-self: baseline;
+  }
+
+  dd {
+    margin: 0;
+    font-style: italic;
+    align-self: baseline;
+  }
+}
+
+/* ==========================================================================
    Toast — generic short-lived notification for copy actions
    ========================================================================== */
 

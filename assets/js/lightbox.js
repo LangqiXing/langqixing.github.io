@@ -12,13 +12,18 @@
     var img = a.querySelector('img');
     return {
       href: a.getAttribute('href'),
-      alt: img ? img.getAttribute('alt') : ''
+      alt: img ? img.getAttribute('alt') : '',
+      camera: a.dataset.camera || '',
+      film: a.dataset.film || '',
+      date: a.dataset.date || '',
+      location: a.dataset.location || '',
+      note: a.dataset.note || ''
     };
   });
 
   // Build the lightbox once, lazily on first open.
   var lb = null;
-  var stage, imgEl, captionEl, prevBtn, nextBtn, counterEl;
+  var stage, imgEl, captionEl, metaEl, prevBtn, nextBtn, counterEl;
   var index = 0;
   var lastFocus = null;
 
@@ -36,6 +41,7 @@
       '<figure class="lx-lightbox__stage">',
       '  <img class="lx-lightbox__img" alt="">',
       '  <figcaption class="lx-lightbox__caption"></figcaption>',
+      '  <dl class="lx-lightbox__meta" hidden></dl>',
       '</figure>',
       '<div class="lx-lightbox__counter" aria-live="polite"></div>'
     ].join('');
@@ -44,6 +50,7 @@
     stage = lb.querySelector('.lx-lightbox__stage');
     imgEl = lb.querySelector('.lx-lightbox__img');
     captionEl = lb.querySelector('.lx-lightbox__caption');
+    metaEl = lb.querySelector('.lx-lightbox__meta');
     prevBtn = lb.querySelector('.lx-lightbox__nav--prev');
     nextBtn = lb.querySelector('.lx-lightbox__nav--next');
     counterEl = lb.querySelector('.lx-lightbox__counter');
@@ -73,8 +80,36 @@
     imgEl.src = item.href;
     imgEl.alt = item.alt || '';
     imgEl.onload = function () { imgEl.classList.remove('is-loading'); };
-    captionEl.textContent = item.alt || '';
+    captionEl.textContent = item.note || item.alt || '';
     counterEl.textContent = (i + 1) + ' / ' + items.length;
+
+    // Metadata block — only render fields that are actually present.
+    var rows = [];
+    var lang = document.documentElement.getAttribute('lang') || 'en';
+    var labels = lang === 'zh'
+      ? { camera: '相机', film: '胶片', date: '日期', location: '地点' }
+      : { camera: 'Camera', film: 'Film', date: 'Date', location: 'Where' };
+    ['camera', 'film', 'date', 'location'].forEach(function (k) {
+      if (item[k]) {
+        rows.push(
+          '<dt>' + labels[k] + '</dt>' +
+          '<dd>' + escapeHtml(item[k]) + '</dd>'
+        );
+      }
+    });
+    if (rows.length) {
+      metaEl.innerHTML = rows.join('');
+      metaEl.hidden = false;
+    } else {
+      metaEl.innerHTML = '';
+      metaEl.hidden = true;
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
   }
 
   function open(i) {

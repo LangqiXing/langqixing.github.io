@@ -45,7 +45,15 @@ redirect_from:
   <div class="film-gallery" aria-label="Film photography gallery">
     {% for i in (1..31) %}
       {% assign n = i | prepend: '00' | slice: -2, 2 %}
-      <a class="film-frame" href="{{ base_path }}/images/film/slide-{{ n }}.jpg" data-reveal>
+      {% assign meta = site.data.film-meta[n] %}
+      <a class="film-frame"
+         href="{{ base_path }}/images/film/slide-{{ n }}.jpg"
+         data-reveal
+         {% if meta.camera %}data-camera="{{ meta.camera }}"{% endif %}
+         {% if meta.film %}data-film="{{ meta.film }}"{% endif %}
+         {% if meta.date %}data-date="{{ meta.date }}"{% endif %}
+         {% if meta.location %}data-location="{{ meta.location }}"{% endif %}
+         {% if meta.note %}data-note="{{ meta.note }}"{% endif %}>
         <img src="{{ base_path }}/images/film/slide-{{ n }}.jpg" alt="Film photograph {{ i }}" loading="lazy">
       </a>
     {% endfor %}
