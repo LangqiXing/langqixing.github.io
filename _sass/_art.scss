@@ -1054,6 +1054,328 @@ a {
 }
 
 /* ==========================================================================
+   Tallies — count-up stats strip on the home page
+   ========================================================================== */
+
+.tallies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: clamp(0.8rem, 2vw, 1.4rem);
+  margin: 2.4rem 0 1rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--art-line);
+  border-radius: 12px;
+  background: var(--art-surface);
+  text-align: center;
+}
+
+.tally {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.18rem;
+}
+
+.tally__num {
+  font-family: $serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: $art-coral;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+}
+
+.tally__label {
+  font-family: $sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--art-muted);
+}
+
+/* ==========================================================================
+   Konami toast
+   ========================================================================== */
+
+.lx-konami-toast {
+  position: fixed;
+  bottom: 6rem;
+  left: 50%;
+  transform: translate(-50%, 12px);
+  padding: 0.65rem 1.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba($art-coral, 0.92), rgba(darken($art-coral, 12%), 0.92));
+  color: #fff4f0;
+  font-family: $serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1080;
+  box-shadow: 0 1rem 2.4rem rgba($art-coral, 0.35);
+  transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &.is-in {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.lx-konami-heart {
+  display: inline-block;
+  animation: lx-heart-beat 0.85s ease-in-out infinite;
+}
+
+@keyframes lx-heart-beat {
+  0%, 100% { transform: scale(1); }
+  20% { transform: scale(1.25); }
+  40% { transform: scale(0.95); }
+  60% { transform: scale(1.15); }
+}
+
+/* ==========================================================================
+   Page transition — ink wipe overlay
+   ========================================================================== */
+
+.lx-page-wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lx-page-wipe__ink {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba($art-ink, 0.04) 4%,
+    rgba($art-ink, 0.88) 12%,
+    rgba($art-ink, 0.98) 50%,
+    rgba($art-ink, 0.88) 88%,
+    rgba($art-ink, 0.04) 96%,
+    transparent 100%);
+  transform: translateX(-110%);
+  transition: transform 0.42s cubic-bezier(0.6, 0.05, 0.2, 1);
+}
+
+[data-theme="dark"] .lx-page-wipe__ink {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(248, 245, 239, 0.04) 4%,
+    rgba(248, 245, 239, 0.88) 12%,
+    rgba(248, 245, 239, 0.98) 50%,
+    rgba(248, 245, 239, 0.88) 88%,
+    rgba(248, 245, 239, 0.04) 96%,
+    transparent 100%);
+}
+
+.lx-page-wipe.is-covering .lx-page-wipe__ink {
+  transform: translateX(0%);
+}
+
+.lx-page-wipe.is-leaving .lx-page-wipe__ink {
+  transform: translateX(110%);
+}
+
+/* ==========================================================================
+   Command palette ⌘K
+   ========================================================================== */
+
+html.lx-cmdk-on { overflow: hidden; }
+
+.lx-cmdk {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(3rem, 12vh, 8rem);
+  background: rgba($art-ink, 0.42);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+[data-theme="dark"] .lx-cmdk { background: rgba(0, 0, 0, 0.62); }
+
+.lx-cmdk__panel {
+  width: min(92vw, 36rem);
+  border-radius: 14px;
+  background: var(--art-surface-strong, rgba(#fff, 0.96));
+  border: 1px solid var(--art-line);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.32);
+  overflow: hidden;
+  transform: translateY(-8px) scale(0.98);
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  .lx-cmdk.is-open & { transform: translateY(0) scale(1); }
+}
+
+[data-theme="dark"] .lx-cmdk__panel {
+  background: rgba(28, 34, 38, 0.96);
+}
+
+.lx-cmdk__header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--art-line);
+}
+
+.lx-cmdk__icon {
+  font-family: $sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $art-teal;
+  letter-spacing: 0.1em;
+}
+
+.lx-cmdk__input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: $serif;
+  font-size: 1.05rem;
+  color: var(--art-ink);
+
+  &::placeholder { color: var(--art-muted); }
+}
+
+.lx-cmdk__esc, .lx-cmdk__footer kbd {
+  display: inline-block;
+  padding: 0.1em 0.45em;
+  border: 1px solid var(--art-line);
+  border-radius: 4px;
+  background: var(--art-surface);
+  color: var(--art-muted);
+  font-family: $sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
+.lx-cmdk__list {
+  margin: 0;
+  padding: 0.4rem;
+  list-style: none;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.lx-cmdk__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  color: var(--art-ink);
+  cursor: pointer;
+  transition: background 0.12s ease;
+
+  &.is-active {
+    background: linear-gradient(135deg, rgba($art-teal, 0.16), rgba($art-coral, 0.08));
+  }
+}
+
+.lx-cmdk__title {
+  font-family: $serif;
+  font-size: 1rem;
+}
+
+.lx-cmdk__hint {
+  font-family: $sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--art-muted);
+  text-transform: uppercase;
+}
+
+.lx-cmdk__empty {
+  padding: 1rem 0.8rem;
+  color: var(--art-muted);
+  font-family: $serif;
+  font-style: italic;
+  text-align: center;
+}
+
+.lx-cmdk__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  padding: 0.55rem 1rem 0.65rem;
+  border-top: 1px solid var(--art-line);
+  color: var(--art-muted);
+  font-family: $sans-serif;
+  font-size: 0.74rem;
+
+  span { display: inline-flex; align-items: center; gap: 0.3rem; }
+}
+
+/* ==========================================================================
+   Theme transition ripple — View Transition API + fallback overlay
+   ========================================================================== */
+
+/* When the browser supports the View Transition API, the new theme paints
+   inside an expanding circle while the old theme stays as the outgoing
+   image. clip-path animates the new theme from a tiny circle at the click
+   origin to one that covers the viewport. */
+@supports (view-transition-name: root) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+  ::view-transition-new(root) {
+    z-index: 2;
+    animation: lx-theme-ripple 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    clip-path: circle(0% at var(--lx-ripple-x, 50%) var(--lx-ripple-y, 50%));
+  }
+}
+
+@keyframes lx-theme-ripple {
+  from { clip-path: circle(0 at var(--lx-ripple-x, 50%) var(--lx-ripple-y, 50%)); }
+  to   { clip-path: circle(var(--lx-ripple-r, 150vmax) at var(--lx-ripple-x, 50%) var(--lx-ripple-y, 50%)); }
+}
+
+/* Fallback for browsers without View Transition API: a single circle div
+   that scales out from the click origin in the destination theme color. */
+.lx-theme-ripple {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  margin: -0.5px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: scale(0);
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.is-out {
+    transform: scale(calc(var(--r) * 2));
+  }
+}
+
+/* ==========================================================================
    Hero h1 cinematic letter reveal
    ========================================================================== */
 
@@ -2490,6 +2812,38 @@ html.lx-splash-on { overflow: hidden; }
 
   @include breakpoint($large) {
     right: 1.4rem;
+  }
+}
+
+/* ----- Command palette trigger button (also lives in masthead rail) ----- */
+
+.cmdk-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.2rem;
+  padding: 0 0.55rem;
+  border: 1px solid var(--art-line);
+  border-radius: 999px;
+  background: var(--art-surface);
+  color: var(--art-muted);
+  cursor: pointer;
+  font-family: $sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  line-height: 1;
+
+  &:hover, &:focus-visible {
+    background: var(--art-surface-strong);
+    color: var(--art-ink);
+    border-color: rgba($art-teal, 0.45);
+    outline: none;
+    transform: translateY(-1px);
   }
 }
 

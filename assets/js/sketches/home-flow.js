@@ -18,6 +18,8 @@
       var DRIFT = 0.00045;    // noise temporal scale — slow drift
       var mx = 0.5, my = 0.5; // normalized mouse, parallax target
       var mxs = 0.5, mys = 0.5; // smoothed
+      var attractUntil = 0;   // ms timestamp; while > now, particles
+                              // are pulled toward heart-shape targets
 
       // Palette pulled from _sass/_art.scss
       var palette = [
@@ -33,6 +35,13 @@
         part.life = p.random(140, 320);
         part.age = 0;
         part.col = palette[p.floor(p.random(palette.length))];
+        // Pick a deterministic target on the heart curve so particles
+        // form a recognizable shape rather than a blob when attracted.
+        var t = p.random(p.TWO_PI);
+        var hx = 16 * Math.pow(Math.sin(t), 3);
+        var hy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+        part.heartTx = hx;
+        part.heartTy = hy;
       }
 
       p.setup = function () {
@@ -62,13 +71,27 @@
         var py = (mys - 0.5) * 22;
 
         var t = p.frameCount * DRIFT;
+        var now = performance.now();
+        var attracting = now < attractUntil;
+        // Heart geometry — center of canvas, scaled to ~45% of min dim.
+        var heartCx = w * 0.5;
+        var heartCy = h * 0.5;
+        var heartScale = Math.min(w, h) * 0.025;
         for (var i = 0; i < particles.length; i++) {
           var prt = particles[i];
-          var n = p.noise(prt.x * SCALE, prt.y * SCALE, t);
-          var ang = n * p.TWO_PI * 2.0;
-          var spd = 0.55 + n * 0.7;
-          prt.x += Math.cos(ang) * spd + px * 0.004;
-          prt.y += Math.sin(ang) * spd + py * 0.004;
+          if (attracting) {
+            var tx = heartCx + prt.heartTx * heartScale;
+            var ty = heartCy + prt.heartTy * heartScale;
+            // Strong spring toward the heart target.
+            prt.x += (tx - prt.x) * 0.06;
+            prt.y += (ty - prt.y) * 0.06;
+          } else {
+            var n = p.noise(prt.x * SCALE, prt.y * SCALE, t);
+            var ang = n * p.TWO_PI * 2.0;
+            var spd = 0.55 + n * 0.7;
+            prt.x += Math.cos(ang) * spd + px * 0.004;
+            prt.y += Math.sin(ang) * spd + py * 0.004;
+          }
           prt.age++;
 
           // Respawn on edges or end-of-life.
@@ -100,6 +123,14 @@
         }
       }
       window.addEventListener('mousemove', onMove, { passive: true });
+
+      // Public hook for the Konami easter egg to briefly attract particles
+      // into a heart shape over a given duration.
+      window.lxHomeFlow = {
+        attract: function (durationMs) {
+          attractUntil = performance.now() + (durationMs || 3000);
+        }
+      };
     }, host);
   }
 

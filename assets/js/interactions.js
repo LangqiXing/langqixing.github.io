@@ -71,20 +71,23 @@
   /* ---------- 3D photo tilt --------------------------------------------- */
   function initTilt() {
     var targets = document.querySelectorAll('[data-tilt]');
-    if (!targets.length) {
-      // Auto-tag the home-intro photo if no explicit targets.
-      var photo = document.querySelector('.home-intro__photo');
-      if (photo) {
-        photo.setAttribute('data-tilt', '');
-        targets = [photo];
-      }
+    // Always auto-tag the home-intro photo so its tilt picks up the larger
+    // parent (.home-intro) zone. data-tilt-zone="parent" preserves the
+    // original behavior even when other cards are in the [data-tilt] set.
+    var photo = document.querySelector('.home-intro__photo');
+    if (photo && !photo.hasAttribute('data-tilt')) {
+      photo.setAttribute('data-tilt', '');
+      photo.setAttribute('data-tilt-zone', 'parent');
+      targets = document.querySelectorAll('[data-tilt]');
     }
 
     targets.forEach(function (el) {
       var parent = el.parentElement;
       var img = el.querySelector('img');
-      var MAX = 9;             // max degrees of tilt
-      var GLARE = 0.28;        // max opacity of glare highlight
+      var MAX = parseFloat(el.dataset.tiltMax) ||
+                (el.dataset.tiltZone === 'parent' ? 9 : 5);
+      var GLARE = parseFloat(el.dataset.tiltGlare) ||
+                  (el.dataset.tiltZone === 'parent' ? 0.28 : 0.16);
       var state = { rx: 0, ry: 0, tx: 0, ty: 0, gx: 50, gy: 50, ga: 0, gaT: 0, raf: 0 };
 
       el.style.willChange = 'transform';
@@ -150,9 +153,12 @@
         ensureLoop();
       }
 
-      // Listen on the parent so the tilt feels active over a larger zone.
-      (parent || el).addEventListener('mousemove', onMove, { passive: true });
-      (parent || el).addEventListener('mouseleave', onLeave);
+      // For grid cards (pub / art / music-artist), listen on the element
+      // itself so neighboring cards don't all tilt together. For the
+      // home-intro photo we keep the larger parent zone by opting in.
+      var zone = el.dataset.tiltZone === 'parent' ? (parent || el) : el;
+      zone.addEventListener('mousemove', onMove, { passive: true });
+      zone.addEventListener('mouseleave', onLeave);
     });
   }
 

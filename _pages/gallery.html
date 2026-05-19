@@ -64,7 +64,7 @@ redirect_from:
   </header>
   <div class="art-grid">
     {% for post in site.portfolio %}
-      <article class="art-card" data-reveal>
+      <article class="art-card" data-reveal data-tilt>
         <a class="art-card__media" href="{{ base_path }}{{ post.url }}">
           {% assign first_img = post.excerpt | split: "src='" | last | split: "'" | first %}
           {% if first_img and first_img != "" %}

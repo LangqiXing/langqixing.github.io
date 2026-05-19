@@ -7,7 +7,7 @@ author_profile: true
 
 <div class="pub-list">
 
-<article class="pub" data-reveal>
+<article class="pub" data-reveal data-tilt>
   <figure class="pub__figure">
     {% include pub-illustrations.html topic="particle-delivery" %}
   </figure>
@@ -31,7 +31,7 @@ author_profile: true
   </div>
 </article>
 
-<article class="pub" data-reveal>
+<article class="pub" data-reveal data-tilt>
   <figure class="pub__figure">
     {% include pub-illustrations.html topic="granular" %}
   </figure>
@@ -55,7 +55,7 @@ author_profile: true
   </div>
 </article>
 
-<article class="pub" data-reveal>
+<article class="pub" data-reveal data-tilt>
   <figure class="pub__figure">
     {% include pub-illustrations.html topic="dip-coating" %}
   </figure>
@@ -79,7 +79,7 @@ author_profile: true
   </div>
 </article>
 
-<article class="pub" data-reveal>
+<article class="pub" data-reveal data-tilt>
   <figure class="pub__figure">
     {% include pub-illustrations.html topic="suspension-coating" %}
   </figure>
