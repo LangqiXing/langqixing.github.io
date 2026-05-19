@@ -1,21 +1,30 @@
 /* ==========================================================================
-   Konami easter egg: ↑↑↓↓←→←→BA → home flow particles briefly form a
-   heart, then disperse. Also flashes a small note "you found it ♥".
+   Easter egg: type "love" anywhere on the page (outside inputs) and the
+   home flow particles briefly snap into a heart shape. Also shows a small
+   "you found it ♥" toast.
    ========================================================================== */
 (function () {
   'use strict';
 
-  var SEQ = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-             'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-             'b', 'a'];
-  var buf = [];
+  var WORD = 'love';
+  var buf = '';
 
   function onKey(e) {
-    var k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-    buf.push(k);
-    if (buf.length > SEQ.length) buf.shift();
-    if (buf.length === SEQ.length && SEQ.every(function (s, i) { return s === buf[i]; })) {
-      buf = [];
+    // Ignore typing inside form fields or contenteditable — the command
+    // palette has its own input, and a real user typing "lovely" in a
+    // form shouldn't fire the egg.
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    // Only single printable characters.
+    if (e.key.length !== 1) {
+      // Reset on most non-character keys so the user can't accumulate.
+      if (e.key !== 'Shift' && e.key !== 'Meta' && e.key !== 'Control' && e.key !== 'Alt') buf = '';
+      return;
+    }
+    buf += e.key.toLowerCase();
+    if (buf.length > WORD.length) buf = buf.slice(-WORD.length);
+    if (buf === WORD) {
+      buf = '';
       trigger();
     }
   }
@@ -31,7 +40,7 @@
     setTimeout(function () { toast.classList.remove('is-in'); }, 3200);
     setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 4000);
 
-    // Particle hijack: ask the home-flow sketch to attract toward heart shape.
+    // Particle hijack: ask the home-flow sketch to attract toward a heart.
     var hijack = window.lxHomeFlow && window.lxHomeFlow.attract;
     if (hijack) hijack(3000);
   }

@@ -8,25 +8,17 @@
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // Build the overlay once and keep it persistent in the body.
-  var overlay = document.createElement('div');
-  overlay.className = 'lx-page-wipe';
-  overlay.innerHTML = '<div class="lx-page-wipe__ink"></div>';
-  document.body.appendChild(overlay);
+  var html = document.documentElement;
 
-  // Phase 1: on initial load, the page might have just been navigated TO.
-  // If a sessionStorage flag was set on the OUT phase, run the IN sweep.
+  // Phase IN: on initial load, if the previous page set a flag, the body
+  // starts faded/blurred and we let it settle in.
   try {
-    if (sessionStorage.getItem('lx-wipe-in') === '1') {
-      sessionStorage.removeItem('lx-wipe-in');
-      overlay.classList.add('is-covering');
+    if (sessionStorage.getItem('lx-page-in') === '1') {
+      sessionStorage.removeItem('lx-page-in');
+      html.classList.add('lx-page-entering');
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          overlay.classList.add('is-leaving');
-          overlay.classList.remove('is-covering');
-          setTimeout(function () {
-            overlay.classList.remove('is-leaving');
-          }, 600);
+          html.classList.remove('lx-page-entering');
         });
       });
     }
@@ -63,19 +55,19 @@
     var a = e.target.closest && e.target.closest('a');
     if (!shouldIntercept(a, e)) return;
     e.preventDefault();
-    overlay.classList.remove('is-leaving');
-    overlay.classList.add('is-covering');
+    html.classList.add('lx-page-leaving');
     var dest = a.href;
-    try { sessionStorage.setItem('lx-wipe-in', '1'); } catch (er) {}
+    try { sessionStorage.setItem('lx-page-in', '1'); } catch (er) {}
+    // Match the CSS transition duration on .lx-page-leaving (260ms).
     setTimeout(function () {
       window.location.href = dest;
-    }, 360);
+    }, 260);
   });
 
   // Catch back/forward — pageshow runs even on bfcache restores.
   window.addEventListener('pageshow', function (e) {
     if (e.persisted) {
-      overlay.classList.remove('is-covering', 'is-leaving');
+      html.classList.remove('lx-page-entering', 'lx-page-leaving');
     }
   });
 }());

@@ -226,7 +226,7 @@ spec for their innovations
 
 <section class="tallies" data-reveal aria-label="By the numbers">
   <div class="tally">
-    <span class="tally__num" data-counter="31">0</span>
+    <span class="tally__num" data-counter="23">0</span>
     <span class="tally__label">
       <span lang="en">rolls shot</span>
       <span lang="zh">卷胶片</span>
@@ -240,10 +240,10 @@ spec for their innovations
     </span>
   </div>
   <div class="tally">
-    <span class="tally__num" data-counter="2">0</span>
+    <span class="tally__num" data-counter="9">0</span>
     <span class="tally__label">
-      <span lang="en">cities lived in</span>
-      <span lang="zh">居住过的城市</span>
+      <span lang="en">countries visited</span>
+      <span lang="zh">去过的国家</span>
     </span>
   </div>
   <div class="tally">

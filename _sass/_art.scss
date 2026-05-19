@@ -1135,52 +1135,41 @@ a {
 }
 
 /* ==========================================================================
-   Page transition — ink wipe overlay
+   Page transition — soft fade + scale + slight blur on the body
    ========================================================================== */
 
-.lx-page-wipe {
-  position: fixed;
-  inset: 0;
-  z-index: 1200;
-  pointer-events: none;
-  overflow: hidden;
+/* Outgoing: dim, push back, soften focus. */
+html.lx-page-leaving body {
+  opacity: 0;
+  transform: scale(0.985) translateY(4px);
+  filter: blur(2px);
+  transition: opacity 0.26s ease,
+              transform 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.26s ease;
 }
 
-.lx-page-wipe__ink {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba($art-ink, 0.04) 4%,
-    rgba($art-ink, 0.88) 12%,
-    rgba($art-ink, 0.98) 50%,
-    rgba($art-ink, 0.88) 88%,
-    rgba($art-ink, 0.04) 96%,
-    transparent 100%);
-  transform: translateX(-110%);
-  transition: transform 0.42s cubic-bezier(0.6, 0.05, 0.2, 1);
+/* Incoming: same start state, then settle in. */
+html.lx-page-entering body {
+  opacity: 0;
+  transform: scale(1.012) translateY(-4px);
+  filter: blur(2px);
 }
 
-[data-theme="dark"] .lx-page-wipe__ink {
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(248, 245, 239, 0.04) 4%,
-    rgba(248, 245, 239, 0.88) 12%,
-    rgba(248, 245, 239, 0.98) 50%,
-    rgba(248, 245, 239, 0.88) 88%,
-    rgba(248, 245, 239, 0.04) 96%,
-    transparent 100%);
+body {
+  transition: opacity 0.42s ease,
+              transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+              filter 0.42s ease;
 }
 
-.lx-page-wipe.is-covering .lx-page-wipe__ink {
-  transform: translateX(0%);
-}
-
-.lx-page-wipe.is-leaving .lx-page-wipe__ink {
-  transform: translateX(110%);
+/* Keep fixed overlays (splash, lightbox, cursor halo, beaker, masthead-actions)
+   exempt from the body transforms so they don't smear. The body is what
+   moves; absolutely-positioned chrome on documentElement stays still. */
+.lx-splash, .lx-lightbox, .lx-cmdk, #lx-cursor-halo,
+#lx-ink-cursor, .lx-beaker, .lx-konami-toast, .lx-rail {
+  /* These elements are children of body in some cases. Pull them out of
+     the transform context by promoting to a new stacking + transform
+     parent of their own. */
+  will-change: opacity, transform;
 }
 
 /* ==========================================================================
