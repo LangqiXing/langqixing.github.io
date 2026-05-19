@@ -11,6 +11,8 @@
     var host = document.getElementById('music-osc');
     if (!host || !window.p5) return;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (conn && conn.saveData) return;
 
     new p5(function (p) {
       var w, h;

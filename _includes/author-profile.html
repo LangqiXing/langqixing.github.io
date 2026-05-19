@@ -15,15 +15,27 @@
   </div>
 
   <div class="author__content">
-    <h3 class="author__name">{{ author.name }}</h3>
-    {% if author.bio %}<p class="author__bio">{{ author.bio }}</p>{% endif %}
+    <h3 class="author__name">
+      <span lang="en">{{ author.name }}</span><span lang="zh">邢朗齐</span>
+    </h3>
+    {% if author.bio %}
+      <p class="author__bio">
+        <span lang="en">{{ author.bio }}</span>
+        <span lang="zh">东北大学机械与工业工程系博士候选人</span>
+      </p>
+    {% endif %}
   </div>
 
   <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
+    <button class="btn btn--inverse">
+      <span lang="en">Follow</span><span lang="zh">关注</span>
+    </button>
     <ul class="author__urls social-icons">
       {% if author.location %}
-        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ author.location }}</li>
+        <li>
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i>
+          <span lang="en">{{ author.location }}</span><span lang="zh">美国波士顿</span>
+        </li>
       {% endif %}
       {% if author.employer %}
         <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ author.employer }}</li>

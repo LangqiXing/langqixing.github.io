@@ -9,6 +9,8 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.matchMedia('(hover: none)').matches) return;
   if (window.innerWidth < 720) return;
+  var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (conn && conn.saveData) return;
 
   var INK = '31, 42, 48';        // matches $art-ink
   var GOLD = '182, 137, 44';     // $art-gold (subtle highlight every ~8th seg)

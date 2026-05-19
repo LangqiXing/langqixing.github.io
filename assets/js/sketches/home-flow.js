@@ -9,6 +9,12 @@
     var host = document.getElementById('home-flow');
     if (!host || !window.p5) return;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Skip entirely on Save-Data connections — keeps the home page snappy
+    // on metered mobile networks. Also skip on tiny viewports where the
+    // host card is small enough that the flow reads as noise.
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (conn && conn.saveData) return;
+    if (window.innerWidth < 540) return;
 
     new p5(function (p) {
       var w, h;
@@ -131,6 +137,31 @@
           attractUntil = performance.now() + (durationMs || 3000);
         }
       };
+
+      // Pause when the host card is offscreen or the tab is hidden — the
+      // particles look the same when they resume, so there's no reason to
+      // burn frames while no one's watching.
+      var paused = false;
+      function setPaused(v) {
+        if (v && !paused) { p.noLoop(); paused = true; }
+        else if (!v && paused) { p.loop(); paused = false; }
+      }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            setPaused(!entry.isIntersecting || document.hidden);
+          });
+        }, { threshold: 0.05 }).observe(host);
+      }
+      document.addEventListener('visibilitychange', function () {
+        // When tab becomes hidden, pause regardless of viewport.
+        if (document.hidden) setPaused(true);
+        else {
+          var r = host.getBoundingClientRect();
+          var onscreen = r.bottom > 0 && r.top < window.innerHeight;
+          setPaused(!onscreen);
+        }
+      });
     }, host);
   }
 

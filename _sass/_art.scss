@@ -46,6 +46,37 @@ html, body, .page__title, .page__content, .archive,
   transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 
+/* Performance: tell the browser that the inside of these heavily-decorated
+   cards doesn't affect anything outside them. Shrinks the rect the browser
+   has to repaint when (e.g.) a hover or tilt animates. */
+.pub, .project, .art-card, .music-artist, .music-gear__item,
+.trail-stop, .film-frame, .marquee-frame, .lx-cmdk__panel,
+.dead-end, .home-intro {
+  contain: layout style paint;
+}
+
+/* Edge vignette — a fixed pseudo-element that paints a soft shadow inset
+   around the viewport edges, giving the page subtle depth like a darkroom
+   print. Pure CSS, no rAF, no DOM. Sits above the body grain (z-index 0)
+   but below content (z-index 1). */
+html:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow:
+    inset 0 0 7vw 1vw rgba($art-ink, 0.06),
+    inset 0 0 14vw 0 rgba($art-ink, 0.05);
+}
+
+[data-theme="dark"] html:before,
+html[data-theme="dark"]:before {
+  box-shadow:
+    inset 0 0 7vw 1vw rgba(#000, 0.42),
+    inset 0 0 14vw 0 rgba(#000, 0.28);
+}
+
 /* ---------- Page canvas ---------- */
 
 html {
