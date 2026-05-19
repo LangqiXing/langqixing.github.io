@@ -1,0 +1,93 @@
+{% comment %}
+  Hand-drawn ink ornaments for use between sections.
+  Usage: {% include ornament.html topic="lab" %}
+  Topics: lab, music, photo, scholar, leaf, asterism (default)
+{% endcomment %}
+
+<div class="ornament ornament--{{ include.topic | default: 'asterism' }}" aria-hidden="true">
+  <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+    {% case include.topic %}
+    {% when 'lab' %}
+      <!-- pipette + droplet + sketchy rule -->
+      <path d="M10 22 L70 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+      <path d="M93 8 L103 8 L101 28 Q98 32, 96 32 Q94 32, 91 28 Z" fill="rgba(47,125,122,0.16)" stroke="#1f2a30" stroke-width="1.2" stroke-linejoin="round"/>
+      <path d="M93 8 L103 8" stroke="#1f2a30" stroke-width="1.4"/>
+      <circle cx="98" cy="36" r="1.6" fill="#2f7d7a"/>
+      <path d="M115 22 Q130 14, 145 22 Q160 30, 175 22" fill="none" stroke="#c9543f" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="180" cy="22" r="2" fill="#c9543f" opacity="0.7"/>
+      <path d="M185 22 L190 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+    {% when 'music' %}
+      <!-- vinyl needle + sound waves -->
+      <path d="M10 22 L62 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+      <circle cx="78" cy="22" r="6" fill="rgba(31,42,48,0.92)" stroke="#1f2a30" stroke-width="1"/>
+      <circle cx="78" cy="22" r="2.4" fill="#c9543f"/>
+      <circle cx="78" cy="22" r="0.8" fill="#1f2a30"/>
+      <path d="M90 22 Q98 14, 106 22 Q114 30, 122 22 Q130 14, 138 22" fill="none" stroke="#2f7d7a" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M142 22 Q150 18, 158 22 Q166 26, 174 22" fill="none" stroke="#c9543f" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+      <path d="M178 22 L190 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+    {% when 'photo' %}
+      <!-- camera aperture + dashed strip -->
+      <path d="M10 22 L72 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+      <g transform="translate(86 22)">
+        <circle cx="0" cy="0" r="11" fill="none" stroke="#1f2a30" stroke-width="1.2"/>
+        <g stroke="#1f2a30" stroke-width="1.1" stroke-linecap="round">
+          <path d="M-10 0 L-3 4"/>
+          <path d="M-5 -8 L0 -2"/>
+          <path d="M5 -8 L4 -1"/>
+          <path d="M10 0 L3 4"/>
+          <path d="M5 8 L1 2"/>
+          <path d="M-5 8 L-2 2"/>
+        </g>
+        <circle cx="0" cy="0" r="3" fill="#b6892c"/>
+      </g>
+      <g transform="translate(115 17)">
+        <rect x="0" y="0" width="50" height="10" fill="none" stroke="#1f2a30" stroke-width="0.9"/>
+        <g fill="#1f2a30">
+          <rect x="2" y="2" width="2" height="2"/><rect x="2" y="6" width="2" height="2"/>
+          <rect x="12" y="2" width="2" height="2"/><rect x="12" y="6" width="2" height="2"/>
+          <rect x="22" y="2" width="2" height="2"/><rect x="22" y="6" width="2" height="2"/>
+          <rect x="32" y="2" width="2" height="2"/><rect x="32" y="6" width="2" height="2"/>
+          <rect x="42" y="2" width="2" height="2"/><rect x="42" y="6" width="2" height="2"/>
+        </g>
+      </g>
+      <path d="M170 22 L190 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+    {% when 'scholar' %}
+      <!-- open book + quill -->
+      <path d="M10 22 L70 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+      <g transform="translate(85 22)">
+        <path d="M-14 -6 Q-7 -10, 0 -6 Q7 -10, 14 -6 L14 6 Q7 2, 0 6 Q-7 2, -14 6 Z" fill="rgba(248,245,239,0.7)" stroke="#1f2a30" stroke-width="1.1" stroke-linejoin="round"/>
+        <path d="M0 -6 L0 6" stroke="#1f2a30" stroke-width="0.8"/>
+        <path d="M-10 -3 L-4 -3 M-10 0 L-4 0 M4 -3 L10 -3 M4 0 L10 0" stroke="#1f2a30" stroke-width="0.5" opacity="0.5"/>
+      </g>
+      <path d="M114 26 Q124 18, 138 12 L144 6 Q140 12, 138 18 Q132 24, 120 30 Z" fill="rgba(201,84,63,0.18)" stroke="#1f2a30" stroke-width="1" stroke-linejoin="round"/>
+      <path d="M114 26 L144 6" stroke="#1f2a30" stroke-width="0.6" opacity="0.5"/>
+      <path d="M150 22 L190 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+    {% when 'leaf' %}
+      <!-- botanical sprig -->
+      <path d="M10 22 L70 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+      <path d="M78 22 Q100 22, 130 18" fill="none" stroke="#1f2a30" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M88 22 Q92 14, 98 12 Q94 18, 90 22" fill="rgba(93,112,82,0.28)" stroke="#1f2a30" stroke-width="0.9" stroke-linejoin="round"/>
+      <path d="M104 21 Q108 14, 114 11 Q110 18, 106 22" fill="rgba(93,112,82,0.28)" stroke="#1f2a30" stroke-width="0.9" stroke-linejoin="round"/>
+      <path d="M120 20 Q126 14, 132 12 Q126 19, 122 21" fill="rgba(93,112,82,0.28)" stroke="#1f2a30" stroke-width="0.9" stroke-linejoin="round"/>
+      <circle cx="132" cy="17" r="2" fill="#c9543f" opacity="0.7"/>
+      <path d="M138 22 L190 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+    {% else %}
+      <!-- default asterism: ✦ ✦ ✦ with hairlines -->
+      <path d="M10 22 L80 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+      <g fill="#1f2a30">
+        <path d="M92 22 L96 18 L100 22 L96 26 Z"/>
+        <path d="M96 14 L96 30" stroke="#1f2a30" stroke-width="0.7" opacity="0.6"/>
+        <path d="M88 22 L104 22" stroke="#1f2a30" stroke-width="0.7" opacity="0.6"/>
+      </g>
+      <g fill="#b6892c">
+        <path d="M114 22 L118 19 L122 22 L118 25 Z"/>
+      </g>
+      <g fill="#c9543f">
+        <path d="M134 22 L138 18 L142 22 L138 26 Z"/>
+        <path d="M138 14 L138 30" stroke="#c9543f" stroke-width="0.7" opacity="0.6"/>
+        <path d="M130 22 L146 22" stroke="#c9543f" stroke-width="0.7" opacity="0.6"/>
+      </g>
+      <path d="M156 22 L190 22" stroke="#b6892c" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.6"/>
+    {% endcase %}
+  </svg>
+</div>

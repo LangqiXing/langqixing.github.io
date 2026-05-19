@@ -572,10 +572,26 @@ a {
 .home-intro__backdrop {
   position: absolute;
   inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.home-intro__flow {
+  position: absolute;
+  inset: 0;
   z-index: -2;
   pointer-events: none;
   border-radius: inherit;
   overflow: hidden;
+  opacity: 0.82;
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
 }
 
 .home-intro__backdrop-layer {
@@ -903,6 +919,186 @@ a {
 }
 
 /* ==========================================================================
+   404 — particle stuck in a dead-end channel
+   ========================================================================== */
+
+.dead-end {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 2.6rem);
+  align-items: center;
+  margin: 2rem 0 3rem;
+  padding: clamp(1rem, 2.4vw, 1.8rem);
+  border: 1px solid $art-line;
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(#fff, 0.82), rgba($art-wash, 0.55));
+  box-shadow: 0 1rem 2.2rem rgba($art-ink, 0.08);
+  animation: sketch-rise 0.7s ease both;
+}
+
+.dead-end__canvas {
+  position: relative;
+  min-height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba($art-paper, 0.55);
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+}
+
+.dead-end__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.dead-end__title {
+  margin: 0.1rem 0 0.4rem;
+  padding: 0;
+  font-family: $serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: $art-ink;
+
+  &:after { display: none; }
+}
+
+.dead-end__lede {
+  margin: 0 0 0.6rem;
+  color: $art-muted;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 28rem;
+}
+
+.dead-end__back {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.5rem 1.05rem;
+  border: 1px solid rgba($art-teal, 0.4);
+  border-radius: 999px;
+  background: rgba(#fff, 0.7);
+  color: darken($art-teal, 6%);
+  font-family: $sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: background 0.22s ease, transform 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+
+  &:hover {
+    transform: translateX(-3px);
+    background: rgba($art-teal, 0.14);
+    border-color: $art-teal;
+    color: darken($art-teal, 12%);
+  }
+}
+
+@include breakpoint(max-width $medium) {
+  .dead-end { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Marginalia — zine / lab-notebook side notes with hand-drawn arrows
+   ========================================================================== */
+
+.margin-note {
+  display: none;
+  font-family: 'Caveat', 'Kalam', 'Comic Sans MS', cursive;
+  color: $art-muted;
+  font-size: 1.18rem;
+  line-height: 1.2;
+  pointer-events: none;
+  z-index: 4;
+
+  @include breakpoint($large) {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+}
+
+.margin-note__arrow {
+  width: 4.6rem;
+  height: 2.4rem;
+  overflow: visible;
+  flex: 0 0 auto;
+
+  &--down {
+    transform: rotate(0);
+  }
+}
+
+.margin-note__text {
+  max-width: 9rem;
+  color: darken($art-coral, 6%);
+  font-style: italic;
+  transform: rotate(-2deg);
+  text-shadow: 0 1px 0 rgba(#fff, 0.6);
+}
+
+.margin-note--photo {
+  position: absolute;
+  top: -1.8rem;
+  right: -2rem;
+  transform: rotate(4deg);
+
+  .margin-note__text {
+    color: darken($art-coral, 8%);
+    transform: rotate(2deg);
+  }
+}
+
+.margin-note--intro {
+  position: absolute;
+  bottom: -2.4rem;
+  left: 1.5rem;
+  transform: rotate(-2deg);
+
+  .margin-note__text {
+    color: darken($art-gold, 8%);
+    max-width: 11rem;
+  }
+}
+
+@include breakpoint(max-width $large) {
+  .margin-note { display: none; }
+}
+
+/* ==========================================================================
+   Section ornaments — hand-drawn dingbats between major sections
+   ========================================================================== */
+
+.ornament {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2.4rem auto;
+  width: 100%;
+  max-width: 18rem;
+  opacity: 0.78;
+  pointer-events: none;
+  user-select: none;
+
+  svg {
+    width: 100%;
+    height: auto;
+    max-height: 2.2rem;
+    overflow: visible;
+  }
+}
+
+.ornament:hover {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* ==========================================================================
    Music page
    ========================================================================== */
 
@@ -924,6 +1120,30 @@ a {
     linear-gradient(135deg, rgba(#fff, 0.8), rgba($art-wash, 0.5));
   box-shadow: 0 1rem 2.4rem rgba($art-ink, 0.08);
   overflow: hidden;
+  isolation: isolate;
+}
+
+.music-hero__osc {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  overflow: hidden;
+  opacity: 0.62;
+  mix-blend-mode: multiply;
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+}
+
+.music-hero > .music-hero__collage,
+.music-hero > .music-hero__intro {
+  position: relative;
+  z-index: 1;
 }
 
 .music-hero__collage {

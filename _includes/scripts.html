@@ -1,5 +1,22 @@
 <script src="{{ base_path }}/assets/js/main.min.js"></script>
 <script src="{{ base_path }}/assets/js/art.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+<script src="{{ base_path }}/assets/js/ink-cursor.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+
+{% comment %} p5.js sketches — load only on pages that need them. {% endcomment %}
+{% assign needs_p5 = false %}
+{% if page.url == '/' or page.url contains '/music/' or page.url contains '/404' %}{% assign needs_p5 = true %}{% endif %}
+{% if needs_p5 %}
+<script src="https://cdn.jsdelivr.net/npm/p5@1.11.2/lib/p5.min.js" defer></script>
+{% endif %}
+{% if page.url == '/' %}
+<script src="{{ base_path }}/assets/js/sketches/home-flow.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+{% endif %}
+{% if page.url contains '/music/' %}
+<script src="{{ base_path }}/assets/js/sketches/music-osc.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+{% endif %}
+{% if page.url contains '/404' %}
+<script src="{{ base_path }}/assets/js/sketches/dead-end.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+{% endif %}
 
 {% include analytics.html %}
 {% include /comments-providers/scripts.html %}

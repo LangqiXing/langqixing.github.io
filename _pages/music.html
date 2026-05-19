@@ -8,6 +8,7 @@ author_profile: true
 {% include base_path %}
 
 <section class="music-hero" data-reveal>
+  <div id="music-osc" class="music-hero__osc" aria-hidden="true"></div>
   <div class="music-hero__collage">
     <figure class="music-hero__photo music-hero__photo--main">
       <img src="{{ base_path }}/images/music/rooftop-night.jpg" alt="Playing acoustic guitar at night on a rooftop">
@@ -287,6 +288,8 @@ author_profile: true
     </article>
   </div>
 </section>
+
+{% include ornament.html topic="music" %}
 
 <!-- ============================== GEAR ============================== -->
 <section class="music-gear" data-reveal>

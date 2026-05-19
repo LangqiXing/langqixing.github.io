@@ -8,12 +8,27 @@ redirect_from:
   - /about.html
 ---
 <div class="home-intro" data-reveal>
+  <div id="home-flow" class="home-intro__flow" aria-hidden="true"></div>
   <div class="home-intro__copy">
     <p>⚙️ I am a fourth-year Ph.D. candidate majoring in Mechanical and Industrial Engineering at Northeastern University. I completed my bachelor’s degree in Chemical Engineering with a minor in History of Art and Architecture at UC Santa Barbara,</p>
   </div>
   <figure class="home-intro__photo">
     <img src="/images/Lilopic.png" alt="Lilo sitting by the window">
+    <aside class="margin-note margin-note--photo" aria-hidden="true">
+      <svg viewBox="0 0 80 40" class="margin-note__arrow">
+        <path d="M70 8 Q 40 4, 18 22 Q 12 28, 6 34" fill="none" stroke="#c9543f" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M10 30 L6 34 L12 35" fill="none" stroke="#c9543f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="margin-note__text">Lilo, official lab mascot. Refuses to wear a coat.</span>
+    </aside>
   </figure>
+  <aside class="margin-note margin-note--intro" aria-hidden="true">
+    <span class="margin-note__text">Notebook, not a CV — wander a little.</span>
+    <svg viewBox="0 0 60 30" class="margin-note__arrow margin-note__arrow--down">
+      <path d="M8 4 Q 20 18, 38 22 Q 46 24, 52 26" fill="none" stroke="#b6892c" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M46 22 L52 26 L46 30" fill="none" stroke="#b6892c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </aside>
 </div>
 
 🧪 My research focuses on improving drug delivery in clogged blood vessels, especially in dead-end vessel geometries where transport is very slow. By engineering solute concentration gradients and tailoring microchannel surface properties, I study how to control particle motion and significantly accelerate transport, reducing delivery times from days to hours. Building on this, I developed tunable hydrogel “beacons” that generate sustained chemical gradients to attract, repel, sort, and organize particles without pumps or external power. 
@@ -25,6 +40,8 @@ Chemical Engineers (AIChE). In my spare time, I enjoy writing songs and rehearse
 in the band. I also loves playing basketball with friends.
 
 👬 I am willing to assisting others on their path in the world of microfluidics and academia.
+
+{% include ornament.html topic="lab" %}
 
 # News
 
@@ -95,6 +112,8 @@ in the band. I also loves playing basketball with friends.
   </div>
 </section>
 
+{% include ornament.html topic="scholar" %}
+
 # Selected Experience
 
 ## 🌍 Research Assistant
@@ -113,6 +132,8 @@ spec for their innovations
 
 | ----------------------------------- | ----------------------------------- |
 | ![pepsico](/images/IMG_2100.png) | ![pepsico](/images/IMG_2162.png) |
+
+{% include ornament.html topic="photo" %}
 
 <section class="film-marquee" data-marquee aria-label="From the film roll" data-reveal>
   <p class="film-marquee__label">From the film roll <a class="film-marquee__more" href="/gallery/#film">see more →</a></p>
