@@ -1040,6 +1040,19 @@ a {
   50%, 100% { border-right-color: transparent; }
 }
 
+/* Simple fade-in variant for bilingual kickers where we can't rewrap the
+   text without losing the nested lang spans. */
+.film-kicker.lx-handwrite--simple {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &.is-written {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ==========================================================================
    Hero h1 cinematic letter reveal
    ========================================================================== */

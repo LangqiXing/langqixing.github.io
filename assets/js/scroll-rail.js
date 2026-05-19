@@ -41,9 +41,16 @@
     if (!kickers.length) return;
 
     // Prepare each kicker: wrap text in a span we can clip via clip-path.
+    // If the kicker already contains nested elements with a lang attribute
+    // (the bilingual EN/ZH pairs), don't rewrap — textContent would flatten
+    // those into plain text and break the i18n CSS hide rules. Fall back to
+    // a simple fade-in for those kickers.
     kickers.forEach(function (k) {
-      // Skip if we've already wrapped it.
-      if (k.classList.contains('lx-handwrite')) return;
+      if (k.classList.contains('lx-handwrite') || k.classList.contains('lx-handwrite--simple')) return;
+      if (k.querySelector('[lang]')) {
+        k.classList.add('lx-handwrite--simple');
+        return;
+      }
       var text = k.textContent;
       k.textContent = '';
       var inner = document.createElement('span');
@@ -53,8 +60,11 @@
       k.classList.add('lx-handwrite');
     });
 
+    // Observe only those that actually got a reveal class (handwrite or simple).
+    var watched = document.querySelectorAll('.lx-handwrite, .lx-handwrite--simple');
+
     if (reduce || !('IntersectionObserver' in window)) {
-      kickers.forEach(function (k) { k.classList.add('is-written'); });
+      watched.forEach(function (k) { k.classList.add('is-written'); });
       return;
     }
 
@@ -67,7 +77,7 @@
       });
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
 
-    kickers.forEach(function (k) { io.observe(k); });
+    watched.forEach(function (k) { io.observe(k); });
   }
 
   function ready(fn) {
