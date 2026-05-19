@@ -1,111 +1,124 @@
 {% comment %}
-  Inline SVG illustration for the No-Scrub Window Cleaner project.
-  The other three projects use real images dropped into /images/projects/.
+  Abstract ink-wash illustration for the No-Scrub Window Cleaner.
+  Composed as a single artistic composition: foam bloom, dust helix,
+  calligraphy motion strokes, and hydrophobic water beads. No literal
+  building / window frame — the *feeling* of soft-matter cleaning.
   Usage: {% include project-illustrations.html topic="window-cleaner" %}
 {% endcomment %}
 
 {% if include.topic == "window-cleaner" %}
-<svg class="project-art" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<svg class="project-art project-art--abstract" viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="wcGlass" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#dfeaee" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#a5c5cf" stop-opacity="0.25"/>
-    </linearGradient>
-    <radialGradient id="wcFoam" cx="35%" cy="35%" r="70%">
-      <stop offset="0%" stop-color="#fff" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#fff" stop-opacity="0.55"/>
+    <radialGradient id="wcWash" cx="42%" cy="38%" r="68%">
+      <stop offset="0%" stop-color="#e8f2ee" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#dbe9e3" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#dbe9e3" stop-opacity="0"/>
     </radialGradient>
+    <radialGradient id="wcFoamGloss" cx="35%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98"/>
+      <stop offset="65%" stop-color="#e8f2ee" stop-opacity="0.78"/>
+      <stop offset="100%" stop-color="#cfe0d8" stop-opacity="0.55"/>
+    </radialGradient>
+    <radialGradient id="wcBead" cx="38%" cy="34%" r="68%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.85)"/>
+      <stop offset="55%" stop-color="rgba(201,84,63,0.55)"/>
+      <stop offset="100%" stop-color="rgba(122,42,29,0.85)"/>
+    </radialGradient>
+    <filter id="wcInk" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="11"/>
+      <feDisplacementMap in="SourceGraphic" scale="1.6"/>
+    </filter>
   </defs>
 
-  <!-- Building silhouette on the left -->
-  <rect x="0" y="14" width="34" height="130" fill="#1f2a30" opacity="0.88"/>
-  <g fill="#fff4d1" opacity="0.75">
-    <rect x="6" y="22" width="6" height="6"/>
-    <rect x="16" y="22" width="6" height="6"/>
-    <rect x="26" y="22" width="6" height="6"/>
-    <rect x="6" y="34" width="6" height="6"/>
-    <rect x="16" y="34" width="6" height="6"/>
-    <rect x="26" y="34" width="6" height="6"/>
-    <rect x="6" y="46" width="6" height="6"/>
-    <rect x="16" y="46" width="6" height="6"/>
-    <rect x="26" y="46" width="6" height="6"/>
-    <rect x="6" y="58" width="6" height="6"/>
-    <rect x="16" y="58" width="6" height="6"/>
-    <rect x="26" y="58" width="6" height="6"/>
-    <rect x="6" y="70" width="6" height="6"/>
-    <rect x="16" y="70" width="6" height="6"/>
-    <rect x="26" y="70" width="6" height="6"/>
-    <rect x="6" y="82" width="6" height="6"/>
-    <rect x="16" y="82" width="6" height="6"/>
-    <rect x="26" y="82" width="6" height="6"/>
-    <rect x="6" y="94" width="6" height="6"/>
-    <rect x="16" y="94" width="6" height="6"/>
-    <rect x="26" y="94" width="6" height="6"/>
-    <rect x="6" y="106" width="6" height="6"/>
-    <rect x="16" y="106" width="6" height="6"/>
-    <rect x="26" y="106" width="6" height="6"/>
+  <!-- Watercolor wash background — irregular soft blob anchoring the comp -->
+  <ellipse cx="116" cy="80" rx="100" ry="62" fill="url(#wcWash)" filter="url(#wcInk)"/>
+
+  <!-- Calligraphy motion strokes — three curved breaths suggesting flow,
+       traced rough so they read as brush ink rather than CSS strokes. -->
+  <g filter="url(#wcInk)" fill="none" stroke-linecap="round">
+    <path d="M22 50 Q 70 20, 130 38 Q 190 55, 222 38"
+          stroke="#1f2a30" stroke-width="1.4" stroke-opacity="0.55"/>
+    <path d="M10 90 Q 60 100, 110 92 Q 170 82, 232 100"
+          stroke="#2f7d7a" stroke-width="1.2" stroke-opacity="0.55"/>
+    <path d="M30 132 Q 80 120, 140 130 Q 200 138, 226 124"
+          stroke="#1f2a30" stroke-width="1" stroke-opacity="0.35"
+          stroke-dasharray="3 4"/>
   </g>
 
-  <!-- Cross-section of one window pane (right of building) -->
-  <rect x="44" y="22" width="166" height="106" fill="url(#wcGlass)" stroke="#1f2a30" stroke-width="1.2"/>
-
-  <!-- Foam layer near the top -->
-  <g stroke="#2f7d7a" stroke-width="0.7">
-    <circle cx="58" cy="38" r="4" fill="url(#wcFoam)"/>
-    <circle cx="68" cy="34" r="3" fill="url(#wcFoam)"/>
-    <circle cx="80" cy="40" r="4.5" fill="url(#wcFoam)"/>
-    <circle cx="92" cy="36" r="3.4" fill="url(#wcFoam)"/>
-    <circle cx="104" cy="40" r="3.8" fill="url(#wcFoam)"/>
-    <circle cx="116" cy="35" r="3.2" fill="url(#wcFoam)"/>
-    <circle cx="128" cy="38" r="4.2" fill="url(#wcFoam)"/>
-    <circle cx="142" cy="34" r="3" fill="url(#wcFoam)"/>
-    <circle cx="156" cy="39" r="3.6" fill="url(#wcFoam)"/>
-    <circle cx="170" cy="36" r="3.2" fill="url(#wcFoam)"/>
-    <circle cx="184" cy="40" r="4" fill="url(#wcFoam)"/>
-    <circle cx="198" cy="36" r="3.4" fill="url(#wcFoam)"/>
+  <!-- Foam bloom — overlapping organic cluster, upper-left -->
+  <g stroke="#2f7d7a" stroke-width="0.9" stroke-opacity="0.7">
+    <circle cx="48" cy="46" r="14" fill="url(#wcFoamGloss)"/>
+    <circle cx="68" cy="38" r="10" fill="url(#wcFoamGloss)"/>
+    <circle cx="36" cy="60" r="8" fill="url(#wcFoamGloss)"/>
+    <circle cx="60" cy="62" r="7" fill="url(#wcFoamGloss)"/>
+    <circle cx="80" cy="52" r="6.5" fill="url(#wcFoamGloss)"/>
+    <circle cx="76" cy="68" r="4.5" fill="url(#wcFoamGloss)"/>
+    <circle cx="90" cy="64" r="3.5" fill="url(#wcFoamGloss)"/>
+  </g>
+  <!-- Foam glints — pure white pinprick highlights -->
+  <g fill="#ffffff" fill-opacity="0.9">
+    <circle cx="43" cy="40" r="1.4"/>
+    <circle cx="64" cy="33" r="1.1"/>
+    <circle cx="33" cy="56" r="0.9"/>
   </g>
 
-  <!-- Dust particles being lifted in the middle band -->
+  <!-- Dust helix — gold particles spiraling from foam toward the lower right,
+       sampled along a swooping curve to suggest the lifting trajectory. -->
   <g fill="#b6892c">
-    <circle cx="64" cy="64" r="1.6"/>
-    <circle cx="78" cy="68" r="1.1"/>
-    <circle cx="90" cy="62" r="1.8"/>
-    <circle cx="104" cy="66" r="1.3"/>
-    <circle cx="116" cy="70" r="1.5"/>
-    <circle cx="128" cy="63" r="1.2"/>
-    <circle cx="140" cy="67" r="1.6"/>
-    <circle cx="154" cy="62" r="1.2"/>
-    <circle cx="166" cy="66" r="1.8"/>
-    <circle cx="180" cy="64" r="1.4"/>
-    <circle cx="194" cy="68" r="1.6"/>
+    <circle cx="98"  cy="58"  r="1.8"/>
+    <circle cx="108" cy="55"  r="1.3"/>
+    <circle cx="118" cy="60"  r="2"/>
+    <circle cx="128" cy="56"  r="1.4"/>
+    <circle cx="138" cy="65"  r="1.7"/>
+    <circle cx="146" cy="74"  r="1.2"/>
+    <circle cx="155" cy="82"  r="1.9"/>
+    <circle cx="164" cy="90"  r="1.4"/>
+    <circle cx="172" cy="98"  r="2.1"/>
+    <circle cx="181" cy="104" r="1.3"/>
+    <circle cx="192" cy="108" r="1.6"/>
+    <circle cx="203" cy="112" r="1.1"/>
+    <circle cx="214" cy="116" r="1.4"/>
+  </g>
+  <!-- Faint trail behind dust to imply motion -->
+  <g fill="#b6892c" fill-opacity="0.18">
+    <circle cx="103" cy="57"  r="2.4"/>
+    <circle cx="123" cy="58"  r="2.6"/>
+    <circle cx="142" cy="70"  r="2.5"/>
+    <circle cx="159" cy="86"  r="2.7"/>
+    <circle cx="177" cy="101" r="2.4"/>
   </g>
 
-  <!-- Up arrows showing the lift action -->
-  <g fill="none" stroke="#c9543f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78">
-    <path d="M84 94 L84 80 M78 86 L84 80 L90 86"/>
-    <path d="M120 96 L120 82 M114 88 L120 82 L126 88"/>
-    <path d="M156 94 L156 80 M150 86 L156 80 L162 86"/>
+  <!-- Two long sweeping strokes that act as a "lifting wind" through the
+       composition, drawn over the dust so they read as motion guides. -->
+  <g fill="none" stroke="#c9543f" stroke-linecap="round" stroke-opacity="0.42">
+    <path d="M95 70 Q 130 60, 165 80 Q 198 100, 220 100" stroke-width="0.9"/>
+    <path d="M88 80 Q 130 78, 170 90 Q 200 100, 218 96" stroke-width="0.6" stroke-dasharray="1.5 3"/>
   </g>
 
-  <!-- Water beads on hydrophobic-coated glass at the bottom -->
-  <g fill="#2f7d7a" fill-opacity="0.7" stroke="#1f2a30" stroke-width="0.6">
-    <ellipse cx="58" cy="110" rx="4.5" ry="3.4"/>
-    <ellipse cx="76" cy="112" rx="3" ry="2.4"/>
-    <ellipse cx="92" cy="110" rx="5" ry="3.8"/>
-    <ellipse cx="112" cy="112" rx="3.2" ry="2.8"/>
-    <ellipse cx="130" cy="110" rx="4" ry="3.2"/>
-    <ellipse cx="150" cy="112" rx="3.4" ry="2.8"/>
-    <ellipse cx="170" cy="110" rx="4.2" ry="3.4"/>
-    <ellipse cx="190" cy="112" rx="3" ry="2.4"/>
+  <!-- Hydrophobic water beads — bottom edge, coral-tinted with glassy
+       gloss. Sit in a casual line rather than a strict row. -->
+  <g stroke="#1f2a30" stroke-width="0.6">
+    <ellipse cx="46"  cy="138" rx="6.5" ry="5"   fill="url(#wcBead)"/>
+    <ellipse cx="74"  cy="142" rx="4"   ry="3.2" fill="url(#wcBead)"/>
+    <ellipse cx="104" cy="137" rx="7.5" ry="5.6" fill="url(#wcBead)"/>
+    <ellipse cx="138" cy="142" rx="5"   ry="4"   fill="url(#wcBead)"/>
+    <ellipse cx="170" cy="138" rx="6"   ry="4.6" fill="url(#wcBead)"/>
+    <ellipse cx="200" cy="143" rx="4.2" ry="3.4" fill="url(#wcBead)"/>
+  </g>
+  <!-- Tiny highlights on the beads -->
+  <g fill="#ffffff" fill-opacity="0.85">
+    <circle cx="43" cy="135" r="1.2"/>
+    <circle cx="73" cy="140" r="0.9"/>
+    <circle cx="100" cy="133" r="1.4"/>
+    <circle cx="136" cy="139" r="0.9"/>
+    <circle cx="167" cy="135" r="1.2"/>
   </g>
 
-  <!-- Glass surface baseline -->
-  <line x1="44" y1="118" x2="210" y2="118" stroke="#1f2a30" stroke-width="1.2"/>
-
-  <!-- Top label -->
-  <text x="127" y="16" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#1f2a30">foam → lifted dust → hydrophobic glass</text>
-
-  <!-- Floor label -->
-  <text x="127" y="138" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10" fill="#b6892c">no scrubbing required</text>
+  <!-- Italic caption — keeps the rest of the figure pure ink. -->
+  <text x="120" y="20" text-anchor="middle"
+        font-family="Georgia, serif" font-style="italic" font-size="12"
+        fill="#1f2a30" fill-opacity="0.78">
+    foam · lifted dust · hydrophobic glass
+  </text>
 </svg>
 {% endif %}

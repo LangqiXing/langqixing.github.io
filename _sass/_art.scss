@@ -2920,6 +2920,241 @@ html.lx-splash-on { overflow: hidden; }
 }
 
 /* ==========================================================================
+   Toast — generic short-lived notification for copy actions
+   ========================================================================== */
+
+.lx-toast {
+  position: fixed;
+  bottom: 6.4rem;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  padding: 0.55rem 1.05rem;
+  border-radius: 999px;
+  background: rgba($art-ink, 0.92);
+  color: #fbf6ec;
+  font-family: $sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  z-index: 1090;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0.8rem 1.8rem rgba($art-ink, 0.32);
+  transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &.is-in {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+[data-theme="dark"] .lx-toast {
+  background: rgba(255, 255, 255, 0.92);
+  color: $art-ink;
+}
+
+/* ==========================================================================
+   Cite button on publication cards
+   ========================================================================== */
+
+.pub__cite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.5rem 0.4rem 0 0;
+  padding: 0.32rem 0.8rem;
+  border: 1px solid rgba($art-gold, 0.5);
+  border-radius: 999px;
+  background: rgba(#fff, 0.55);
+  color: darken($art-gold, 6%);
+  font-family: $sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+  &:hover, &:focus-visible {
+    background: rgba($art-gold, 0.16);
+    border-color: $art-gold;
+    color: darken($art-gold, 12%);
+    transform: translateX(2px);
+    outline: none;
+  }
+}
+
+.pub__cite-icon {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 0.92em;
+  letter-spacing: -0.06em;
+}
+
+[data-theme="dark"] .pub__cite-btn {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   Heading anchors — hover h2/h3 to reveal a copyable # link
+   ========================================================================== */
+
+.lx-anchorable {
+  position: relative;
+
+  .lx-anchor {
+    position: absolute;
+    left: -1.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 4px;
+    color: var(--art-muted);
+    text-decoration: none;
+    font-family: $sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.18s ease, color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+
+    &:hover {
+      color: $art-coral;
+      background: rgba($art-coral, 0.12);
+      transform: translateY(-50%) translateX(-2px);
+    }
+  }
+
+  &:hover .lx-anchor,
+  .lx-anchor:focus-visible { opacity: 1; }
+}
+
+@include breakpoint(max-width $medium) {
+  /* On narrow viewports there's no gutter — tuck the anchor inline next
+     to the heading text and keep it always visible (touch screens have
+     no hover state). */
+  .lx-anchorable .lx-anchor {
+    position: static;
+    transform: none;
+    display: inline;
+    margin-left: 0.4em;
+    opacity: 0.4;
+    width: auto;
+    height: auto;
+  }
+}
+
+/* ==========================================================================
+   External-link arrow ↗ — auto-applied to off-domain http(s) links
+   ========================================================================== */
+
+a[href^="http://"]:not([href*="langqixing.com"]):not([href*="langqixing.github.io"]):after,
+a[href^="https://"]:not([href*="langqixing.com"]):not([href*="langqixing.github.io"]):after {
+  content: " \2197"; /* ↗ */
+  display: inline-block;
+  margin-left: 0.12em;
+  font-size: 0.82em;
+  font-weight: 600;
+  opacity: 0.55;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+a[href^="http://"]:not([href*="langqixing.com"]):not([href*="langqixing.github.io"]):hover:after,
+a[href^="https://"]:not([href*="langqixing.com"]):not([href*="langqixing.github.io"]):hover:after {
+  transform: translate(2px, -2px);
+  opacity: 0.9;
+}
+
+/* Suppress the ↗ inside specific chrome where the arrow would be noise. */
+.music-link:after,
+.music-genre__launcher:after,
+.pub__link:after,
+.project__link:after,
+.dead-end__back:after,
+.author__urls a:after,
+.gallery-tab:after,
+.music-tab:after,
+.lx-cmdk__item a:after,
+.masthead__menu-item a:after,
+.lx-anchorable .lx-anchor:after,
+.marquee-frame:after,
+.film-frame:after,
+.film-marquee__more:after,
+.art-card__media:after,
+.art-card__title a:after {
+  content: none !important;
+}
+
+/* ==========================================================================
+   Print stylesheet — make the site print sensibly (CV / Pubs use this)
+   ========================================================================== */
+
+@media print {
+  /* Reset background + colors to ink on paper. */
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body { font-size: 11pt; }
+
+  /* Hide every decorative or interactive overlay. */
+  body:before, body:after,
+  .masthead, .masthead-actions, .author__urls,
+  .lx-rail, .lx-beaker, .lx-splash, .lx-lightbox,
+  .lx-cmdk, .lx-toast, .lx-konami-toast, .lx-theme-ripple,
+  #lx-ink-cursor, #lx-cursor-halo,
+  .home-intro__flow, .home-intro__backdrop,
+  .music-hero__osc, .music-hero__vinyl,
+  .ornament, .film-marquee, .tallies,
+  .lx-page-wipe, .gallery-tabs, .music-tabs,
+  .trail__rail, .home-intro__photo {
+    display: none !important;
+  }
+
+  /* Flatten layout. */
+  #main { max-width: none !important; padding: 0 !important; }
+  .page__content, .archive { padding: 0 !important; }
+  .home-intro, .pub, .project, .art-card, .music-artist {
+    grid-template-columns: 1fr !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    transform: none !important;
+    page-break-inside: avoid;
+  }
+
+  /* Expand link URLs after their text, except for anchors and pure-image
+     wrappers. */
+  a[href^="http"]:not(.film-frame):not(.marquee-frame):not(.art-card__media):after {
+    content: " (" attr(href) ")" !important;
+    font-size: 0.85em;
+    color: #555;
+  }
+
+  /* Ensure both bilingual variants are shown in print, with a divider. */
+  html[lang="en"] [lang="zh"],
+  html[lang="zh"] [lang="en"] {
+    display: inline !important;
+    color: #777;
+    font-size: 0.9em;
+  }
+
+  /* Force black text on h1/h2/h3. */
+  h1, h2, h3, h4 { color: #000 !important; }
+
+  /* Disable any persistent transforms. */
+  *, *:before, *:after {
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
    Theme toggle button — sits in the masthead
    ========================================================================== */
 

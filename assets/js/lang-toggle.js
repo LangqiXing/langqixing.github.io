@@ -15,8 +15,34 @@
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
   }
   function store(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  // EN → ZH substitution table for the document title.
+  var TITLE_MAP = [
+    ["Langqi's Homepage", "邢朗齐的主页"],
+    ['Langqi Xing',       '邢朗齐'],
+    ['Publications',      '论文'],
+    ['Projects',          '项目'],
+    ['Gallery',           '画廊'],
+    ['Music',             '音乐'],
+    ['CV',                '简历'],
+    ['Page Not Found',    '页面未找到']
+  ];
+
+  function applyTitle(lang) {
+    var t = document.title || '';
+    TITLE_MAP.forEach(function (pair) {
+      var en = pair[0], zh = pair[1];
+      if (lang === 'zh') {
+        if (t.indexOf(en) !== -1) t = t.split(en).join(zh);
+      } else {
+        if (t.indexOf(zh) !== -1) t = t.split(zh).join(en);
+      }
+    });
+    document.title = t;
+  }
+
   function apply(lang) {
     document.documentElement.setAttribute('lang', lang);
+    applyTitle(lang);
   }
 
   // Initial state — the head inline script may have already set this.
@@ -26,8 +52,10 @@
     if (stored) initial = stored;
     else if (/^zh/i.test(navigator.language || '')) initial = 'zh';
     else initial = DEFAULT;
-    apply(initial);
   }
+  // Always apply so the title is in sync with the current language, even
+  // when the head pre-script already set [lang] before paint.
+  apply(initial);
 
   function build() {
     var inner = document.querySelector('.masthead__inner-wrap') ||
