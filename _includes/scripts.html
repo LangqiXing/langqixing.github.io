@@ -1,6 +1,12 @@
 <script src="{{ base_path }}/assets/js/main.min.js"></script>
 <script src="{{ base_path }}/assets/js/art.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
 <script src="{{ base_path }}/assets/js/ink-cursor.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+<script src="{{ base_path }}/assets/js/interactions.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+<script src="{{ base_path }}/assets/js/scroll-rail.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+<script src="{{ base_path }}/assets/js/theme-toggle.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+{% if page.url contains '/gallery/' %}
+<script src="{{ base_path }}/assets/js/lightbox.js?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+{% endif %}
 
 {% comment %} p5.js sketches — load only on pages that need them. {% endcomment %}
 {% assign needs_p5 = false %}

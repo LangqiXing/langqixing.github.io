@@ -12,6 +12,40 @@ $art-coral: #c9543f;
 $art-gold: #b6892c;
 $art-line: rgba($art-ink, 0.12);
 
+/* Day / Night — most surfaces still use Sass variables (color-math works
+   at build time), but the few biggest surfaces also read from these CSS
+   custom properties, so the theme toggle can override them at runtime. */
+:root {
+  --art-ink: #{$art-ink};
+  --art-muted: #{$art-muted};
+  --art-paper: #{$art-paper};
+  --art-wash: #{$art-wash};
+  --art-cream: #{$art-cream};
+  --art-surface: #{rgba(#fff, 0.78)};
+  --art-surface-strong: #{rgba(#fff, 0.92)};
+  --art-line: #{rgba($art-ink, 0.12)};
+  --art-grain: 0.35;
+}
+
+[data-theme="dark"] {
+  --art-ink: #ede5d3;             /* warm vellum ink */
+  --art-muted: #9aa3a0;
+  --art-paper: #15191c;
+  --art-wash: #1c2226;
+  --art-cream: #1a1f23;
+  --art-surface: rgba(255, 255, 255, 0.04);
+  --art-surface-strong: rgba(255, 255, 255, 0.08);
+  --art-line: rgba(237, 229, 211, 0.14);
+  --art-grain: 0.18;
+  color-scheme: dark;
+}
+
+html, body, .page__title, .page__content, .archive,
+.page__content p, .page__content li, .archive p, .archive li,
+.author__name, .home-intro p, .home-intro__copy p {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
 /* ---------- Page canvas ---------- */
 
 html {
@@ -917,6 +951,244 @@ a {
   [data-reveal] { opacity: 1; transform: none; }
   .marquee-track { animation: none; }
 }
+
+/* ==========================================================================
+   Scroll rail — thin right-side ink progress line
+   ========================================================================== */
+
+.lx-rail {
+  position: fixed;
+  top: 4.4rem;
+  bottom: 1.6rem;
+  right: 0.85rem;
+  width: 2px;
+  z-index: 25;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba($art-ink, 0.06), rgba($art-ink, 0.06));
+  border-radius: 999px;
+  overflow: visible;
+}
+
+.lx-rail__fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, $art-teal, $art-gold 50%, $art-coral);
+  border-radius: inherit;
+  transform-origin: top center;
+  transform: scaleY(0);
+}
+
+.lx-rail__cap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-left: -0.275rem;
+  margin-top: -0.275rem;
+  border-radius: 50%;
+  background: $art-coral;
+  box-shadow: 0 0 0 3px rgba($art-coral, 0.18), 0 0 0 6px rgba($art-coral, 0.08);
+  transform: translateY(0%);
+}
+
+@include breakpoint(max-width $medium) {
+  .lx-rail { display: none; }
+}
+
+/* ==========================================================================
+   Kicker typewriter reveal — keeps the pill chip, animates the text
+   inside as if being written in real time.
+   ========================================================================== */
+
+.film-kicker.lx-handwrite {
+  /* Hide the pill border + background until reveal so it "stamps" in. */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  /* Inner ink span that gets clipped from left to right. */
+  .lx-handwrite__ink {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 0;
+    border-right: 1px solid currentColor;
+    transition: max-width 1.4s cubic-bezier(0.5, 0.05, 0.2, 1);
+  }
+
+  /* Subtle blinking caret while writing. */
+  &:not(.is-written) .lx-handwrite__ink {
+    animation: lx-caret 0.7s steps(2) infinite;
+  }
+
+  &.is-written .lx-handwrite__ink {
+    max-width: 28rem;
+    border-right-color: transparent;
+    transition-delay: 0.05s;
+  }
+}
+
+@keyframes lx-caret {
+  0%, 49% { border-right-color: currentColor; }
+  50%, 100% { border-right-color: transparent; }
+}
+
+/* ==========================================================================
+   Lightbox — full-screen photo viewer
+   ========================================================================== */
+
+html.lx-lightbox-on { overflow: hidden; }
+
+.lx-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background:
+    radial-gradient(1100px 720px at 16% 8%, rgba($art-teal, 0.16), transparent 60%),
+    radial-gradient(900px 620px at 90% 90%, rgba($art-coral, 0.12), transparent 60%),
+    rgba($art-ink, 0.92);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+          backdrop-filter: blur(18px) saturate(1.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.32s ease, visibility 0.32s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.lx-lightbox__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  max-width: min(94vw, 1180px);
+  max-height: 84vh;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform: scale(0.96);
+
+  .lx-lightbox.is-open & { transform: scale(1); }
+}
+
+.lx-lightbox__img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(#000, 0.4);
+  box-shadow: 0 2rem 4rem rgba(#000, 0.45);
+  transition: opacity 0.2s ease;
+
+  &.is-loading { opacity: 0.4; }
+}
+
+.lx-lightbox__caption {
+  margin-top: 0.85rem;
+  color: rgba(#fff, 0.78);
+  font-family: $serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+  text-align: center;
+  max-width: 42rem;
+}
+
+.lx-lightbox__close,
+.lx-lightbox__nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(#fff, 0.12);
+  border: 1px solid rgba(#fff, 0.18);
+  color: #fff;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  transition: background 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+
+  &:hover, &:focus-visible {
+    background: rgba(#fff, 0.22);
+    border-color: rgba(#fff, 0.4);
+    outline: none;
+  }
+}
+
+.lx-lightbox__close {
+  top: clamp(0.8rem, 2vw, 1.4rem);
+  right: clamp(0.8rem, 2vw, 1.4rem);
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0;
+
+  &:hover { transform: rotate(90deg); }
+}
+
+.lx-lightbox__nav {
+  top: 50%;
+  width: 2.8rem;
+  height: 4.6rem;
+  border-radius: 8px;
+  font-family: $serif;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 0;
+  transform: translateY(-50%);
+}
+
+.lx-lightbox__nav--prev {
+  left: clamp(0.6rem, 2vw, 1.4rem);
+
+  &:hover { transform: translate(-3px, -50%); }
+}
+
+.lx-lightbox__nav--next {
+  right: clamp(0.6rem, 2vw, 1.4rem);
+
+  &:hover { transform: translate(3px, -50%); }
+}
+
+.lx-lightbox__counter {
+  position: absolute;
+  bottom: clamp(1rem, 2vw, 1.6rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.32rem 0.85rem;
+  border: 1px solid rgba(#fff, 0.18);
+  border-radius: 999px;
+  background: rgba(#fff, 0.08);
+  color: rgba(#fff, 0.72);
+  font-family: $sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+
+@include breakpoint(max-width $medium) {
+  .lx-lightbox__nav {
+    width: 2.4rem;
+    height: 4rem;
+    font-size: 1.6rem;
+  }
+}
+
+/* Make film-frame links visibly clickable as zoom triggers */
+.film-frame { cursor: zoom-in; }
 
 /* ==========================================================================
    404 — particle stuck in a dead-end channel
@@ -2111,4 +2383,202 @@ html.lx-splash-on { overflow: hidden; }
 @include breakpoint(max-width $medium) {
   .lx-splash__stage { gap: 1rem; padding: 1rem; }
   .lx-splash__title { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+}
+
+/* ==========================================================================
+   Theme toggle button — sits in the masthead
+   ========================================================================== */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-left: 0.6rem;
+  padding: 0;
+  border: 1px solid var(--art-line);
+  border-radius: 999px;
+  background: var(--art-surface);
+  color: var(--art-ink);
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  transition: background 0.22s ease, transform 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+  font-size: 1rem;
+  line-height: 1;
+
+  &:hover, &:focus-visible {
+    background: var(--art-surface-strong);
+    border-color: rgba($art-coral, 0.4);
+    outline: none;
+    transform: rotate(15deg);
+  }
+
+  .theme-toggle__icon {
+    display: inline-block;
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s ease;
+  }
+}
+
+[data-theme="dark"] .theme-toggle__icon {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   Dark mode overrides — recolor the most visible surfaces only.
+   Decorative accents (teal/coral/gold) stay the same since they read as
+   warm in both modes.
+   ========================================================================== */
+
+[data-theme="dark"] {
+  html { background: var(--art-paper); }
+
+  body {
+    color: var(--art-ink);
+    background:
+      radial-gradient(1100px 720px at 12% -6%, rgba($art-teal, 0.14), transparent 62%),
+      radial-gradient(900px 620px at 108% 18%, rgba($art-coral, 0.10), transparent 60%),
+      radial-gradient(800px 540px at 50% 118%, rgba($art-gold, 0.10), transparent 60%),
+      linear-gradient(180deg, var(--art-paper) 0%, var(--art-cream) 100%);
+    background-attachment: fixed;
+  }
+
+  /* Tone down the paper-grain in dark mode. */
+  body:after {
+    opacity: 0.18;
+    mix-blend-mode: screen;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  }
+
+  /* Masthead frosted glass over dark canvas. */
+  .masthead {
+    background: rgba(21, 25, 28, 0.72);
+    border-bottom-color: var(--art-line);
+  }
+  .masthead__menu-item a { color: var(--art-muted); }
+  .masthead__menu-item a:hover { color: var(--art-ink); }
+  .masthead__menu-item--lg a { color: var(--art-ink); }
+
+  /* Sidebar / author panel. */
+  .sidebar {
+    @include breakpoint($large) {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--art-line);
+    }
+  }
+  .author__name { color: var(--art-ink); }
+  .author__bio,
+  .author__urls li,
+  .author__urls a { color: var(--art-muted); }
+
+  /* Page text. */
+  .page__title { color: var(--art-ink); }
+  .page__content,
+  .archive {
+    h1, h2, h3 { color: var(--art-ink); }
+    p, li { color: var(--art-ink); }
+  }
+  .page__content a, .archive a, a {
+    color: lighten($art-teal, 18%);
+    text-decoration-color: rgba($art-coral, 0.6);
+    &:hover { color: lighten($art-coral, 10%); }
+  }
+
+  /* Cards & major surfaces — switch white-ish fills to dark-translucent. */
+  .home-intro,
+  .home-page #news + p,
+  .home-page #news + ul,
+  .trail,
+  .pub,
+  .art-card,
+  .music-artist,
+  .music-hero,
+  .music-gear__item,
+  .film-frame,
+  .marquee-frame,
+  .gallery-tabs,
+  .dead-end,
+  .dead-end__canvas,
+  .home-intro__photo,
+  .music-hero__photo,
+  .film-hero {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: var(--art-line) !important;
+    box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.36);
+  }
+  .home-intro:before {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)) !important;
+  }
+
+  .music-hero {
+    background:
+      radial-gradient(800px 500px at 110% -10%, rgba($art-coral, 0.20), transparent 60%),
+      radial-gradient(700px 480px at -10% 110%, rgba($art-teal, 0.20), transparent 60%),
+      linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)) !important;
+  }
+
+  /* Pill kickers — keep coral accent but darken the chip. */
+  .film-kicker {
+    background: rgba(255, 255, 255, 0.06);
+    color: lighten($art-coral, 14%);
+    border-color: rgba($art-coral, 0.4);
+  }
+
+  /* Trail card popouts. */
+  .trail-stop__card {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--art-line);
+    &:before {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--art-line);
+    }
+  }
+  .trail-stop__dot {
+    background: radial-gradient(circle at 32% 30%, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
+    color: var(--art-ink);
+  }
+
+  /* Publications & gallery internal photo frames. */
+  .pub__figure { background: rgba(255, 255, 255, 0.04); }
+  .art-card__excerpt { color: var(--art-muted); }
+  .pub__lede, .pub__venue { color: var(--art-muted); }
+
+  /* News pill */
+  #news, .home-page #news {
+    background: rgba(255, 255, 255, 0.06);
+    color: lighten($art-coral, 12%);
+  }
+
+  /* Music artist medallion stays — the dark inner reads well in both modes. */
+
+  /* Marquee frame backgrounds */
+  .marquee-frame { background: rgba(255, 255, 255, 0.08); }
+  .film-marquee { border-color: var(--art-line); }
+
+  /* Lightbox already dark — leave alone. */
+  /* Splash backdrop also already dark on purpose. */
+
+  /* Ornament strokes — flip to lighter ink so they show on dark paper. */
+  .ornament svg path[stroke="#1f2a30"],
+  .ornament svg circle[stroke="#1f2a30"] { stroke: var(--art-ink); }
+  .ornament svg [fill="#1f2a30"]:not([stroke]) { fill: var(--art-ink); }
+
+  /* Scroll rail tweaks. */
+  .lx-rail { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06)); }
+
+  /* Ink cursor — keep ink color, multiply still works but lift alpha. */
+  #lx-ink-cursor { mix-blend-mode: screen; }
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    /* The toggle will set [data-theme], but if it hasn't yet, honor OS pref
+       by applying the same overrides at :root level. Inherited from
+       [data-theme="dark"] block above via the toggle JS — kept here as a
+       gentle nudge so first paint isn't a flash of light theme. */
+  }
 }
