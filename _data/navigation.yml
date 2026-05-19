@@ -1,16 +1,16 @@
-# main links links
+# main links links — bilingual via <span lang="..."> pairs
 main:
-  - title: "Projects"
+  - title: '<span lang="en">Projects</span><span lang="zh">项目</span>'
     url: /projects/
 
-  - title: "Publications"
+  - title: '<span lang="en">Publications</span><span lang="zh">论文</span>'
     url: /publications/
 
-  - title: "Gallery"
+  - title: '<span lang="en">Gallery</span><span lang="zh">画廊</span>'
     url: /gallery/
 
-  - title: "Music"
+  - title: '<span lang="en">Music</span><span lang="zh">音乐</span>'
     url: /music/
 
-  - title: "CV"
+  - title: '<span lang="en">CV</span><span lang="zh">简历</span>'
     url: /files/CV.pdf

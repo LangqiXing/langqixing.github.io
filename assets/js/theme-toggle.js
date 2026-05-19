@@ -30,24 +30,26 @@
   }
 
   function build() {
-    // Inject toggle into the masthead's right side, after the last menu item.
-    var menu = document.querySelector('.masthead .greedy-nav .visible-links');
-    var host = menu || document.querySelector('.masthead .greedy-nav') || document.querySelector('.masthead nav');
-    if (!host) return null;
+    // Always mount at the masthead's right edge so the toggle is reachable
+    // on mobile too (the .visible-links list gets hidden under hamburger).
+    var inner = document.querySelector('.masthead__inner-wrap') ||
+                document.querySelector('.masthead');
+    if (!inner) return null;
+
+    // Create a wrapper for the action chips that floats to the right.
+    var rail = inner.querySelector('.masthead-actions');
+    if (!rail) {
+      rail = document.createElement('div');
+      rail.className = 'masthead-actions';
+      inner.appendChild(rail);
+    }
 
     var btn = document.createElement('button');
     btn.className = 'theme-toggle';
     btn.setAttribute('type', 'button');
     btn.setAttribute('aria-label', 'Toggle day / night');
     btn.innerHTML = '<span class="theme-toggle__icon" aria-hidden="true"></span>';
-    // For ul-based menus, wrap in a list item to keep flex flow aligned.
-    if (host.tagName === 'UL') {
-      var li = document.createElement('li');
-      li.appendChild(btn);
-      host.appendChild(li);
-    } else {
-      host.appendChild(btn);
-    }
+    rail.appendChild(btn);
 
     function updateIcon() {
       var cur = document.documentElement.getAttribute('data-theme');

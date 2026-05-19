@@ -12,19 +12,35 @@ redirect_from:
 {% include base_path %}
 
 <section class="film-hero" data-reveal>
-  <p class="film-kicker">Visual Notebook</p>
-  <h1 class="no-rule">Gallery</h1>
-  <p>A small archive of things I’ve looked at and made — film photographs from the rolls I’ve shot, and a few paintings from quieter afternoons.</p>
+  <p class="film-kicker">
+    <span lang="en">Visual Notebook</span><span lang="zh">视觉笔记</span>
+  </p>
+  <h1 class="no-rule">
+    <span lang="en">Gallery</span><span lang="zh">画廊</span>
+  </h1>
+  <p>
+    <span lang="en">A small archive of things I’ve looked at and made — film photographs from the rolls I’ve shot, and a few paintings from quieter afternoons.</span>
+    <span lang="zh">关于我所看到与所做的一小份档案——胶片相机里冲出来的照片，以及几个安静午后留下的画作。</span>
+  </p>
   <nav class="gallery-tabs" aria-label="Gallery sections">
-    <a href="#film" class="gallery-tab is-active" data-tab="film">Film Photography</a>
-    <a href="#art" class="gallery-tab" data-tab="art">Paintings &amp; Art</a>
+    <a href="#film" class="gallery-tab is-active" data-tab="film">
+      <span lang="en">Film Photography</span><span lang="zh">胶片摄影</span>
+    </a>
+    <a href="#art" class="gallery-tab" data-tab="art">
+      <span lang="en">Paintings &amp; Art</span><span lang="zh">画作与艺术</span>
+    </a>
   </nav>
 </section>
 
 <section id="film" class="gallery-section" data-reveal>
   <header class="gallery-section__header">
-    <h2 class="no-rule">Film Photography</h2>
-    <p class="gallery-section__lede">35mm — moments that survived the roll.</p>
+    <h2 class="no-rule">
+      <span lang="en">Film Photography</span><span lang="zh">胶片摄影</span>
+    </h2>
+    <p class="gallery-section__lede">
+      <span lang="en">35mm — moments that survived the roll.</span>
+      <span lang="zh">35mm——卷里幸存下来的瞬间。</span>
+    </p>
   </header>
   <div class="film-gallery" aria-label="Film photography gallery">
     {% for i in (1..31) %}
@@ -38,8 +54,13 @@ redirect_from:
 
 <section id="art" class="gallery-section gallery-section--art" data-reveal>
   <header class="gallery-section__header">
-    <h2 class="no-rule">Paintings &amp; Art</h2>
-    <p class="gallery-section__lede">Brush, oil, and the occasional sunrise.</p>
+    <h2 class="no-rule">
+      <span lang="en">Paintings &amp; Art</span><span lang="zh">画作与艺术</span>
+    </h2>
+    <p class="gallery-section__lede">
+      <span lang="en">Brush, oil, and the occasional sunrise.</span>
+      <span lang="zh">画笔、颜料，偶尔的一场日出。</span>
+    </p>
   </header>
   <div class="art-grid">
     {% for post in site.portfolio %}
