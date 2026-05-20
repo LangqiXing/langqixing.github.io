@@ -67,11 +67,21 @@ html, body, .page__title, .page__content, .archive,
 
 /* Performance: tell the browser that the inside of these heavily-decorated
    cards doesn't affect anything outside them. Shrinks the rect the browser
-   has to repaint when (e.g.) a hover or tilt animates. */
+   has to repaint when (e.g.) a hover or tilt animates.
+   IMPORTANT: only include elements whose children stay inside the padding
+   box. Elements with popouts (.trail-stop's detail card, .film-frame's
+   tape sticker decoration, .home-intro's marginalia) MUST NOT use
+   contain: paint because it clips overflowing descendants. */
 .pub, .project, .art-card, .music-artist, .music-gear__item,
-.trail-stop, .film-frame, .marquee-frame, .lx-cmdk__panel,
-.dead-end, .home-intro {
+.marquee-frame, .lx-cmdk__panel, .dead-end {
   contain: layout style paint;
+}
+
+/* These have visible overflow (popout cards / tape stickers / margin
+   notes), so we only contain layout + style — keeps perf benefit without
+   clipping the decorations. */
+.trail-stop, .film-frame, .home-intro {
+  contain: layout style;
 }
 
 /* Edge vignette — a fixed pseudo-element that paints a soft shadow inset

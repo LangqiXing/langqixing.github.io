@@ -1,7 +1,7 @@
 {% comment %}
   Publication figures.
-  Drop the actual paper figures into /images/pub/ with these filenames:
-    pub-particle-delivery.png   — Nanoscale 2026 (dead-end particle delivery)
+  /images/pub/ holds the actual paper figures:
+    pub-particle-delivery.jpg   — Nanoscale 2026 (dead-end particle delivery)
     pub-granular.png            — PRF 2024 (granular column collapse)
     pub-dip-coating.png         — JCIS 2023 (fiber dip coating setup)
     pub-suspension-coating.png  — Soft Matter 2022 (suspension coating)
@@ -9,11 +9,11 @@
 {% endcomment %}
 
 {% if include.topic == "particle-delivery" %}
-<img class="pub-art pub-art--photo" src="{{ '/images/pub/pub-particle-delivery.png' | relative_url }}" alt="Schematic from 'Controlling particle dynamics in dead-end channels via boundary effects' — particles confined within a channel cross-section.">
+<img class="pub-art pub-art--photo" src="{{ '/images/pub/pub-particle-delivery.jpg' | relative_url }}" loading="lazy" decoding="async" alt="Schematic from 'Controlling particle dynamics in dead-end channels via boundary effects' — particles confined within a channel cross-section.">
 {% elsif include.topic == "granular" %}
-<img class="pub-art pub-art--photo" src="{{ '/images/pub/pub-granular.png' | relative_url }}" alt="Schematic from 'The effects of interparticle cohesion on the collapse of granular columns' — cylindrical and rectangular column collapse geometries.">
+<img class="pub-art pub-art--photo" src="{{ '/images/pub/pub-granular.png' | relative_url }}" loading="lazy" decoding="async" alt="Schematic from 'The effects of interparticle cohesion on the collapse of granular columns' — cylindrical and rectangular column collapse geometries.">
 {% elsif include.topic == "dip-coating" %}
-<img class="pub-art pub-art--photo" src="{{ '/images/pub/pub-dip-coating.png' | relative_url }}" alt="Experimental setup from 'Deposition and alignment of fiber suspensions by dip coating' — translation stage with fiber suspension and aligned-fiber micrographs.">
+<img class="pub-art pub-art--photo" src="{{ '/images/pub/pub-dip-coating.png' | relative_url }}" loading="lazy" decoding="async" alt="Experimental setup from 'Deposition and alignment of fiber suspensions by dip coating' — translation stage with fiber suspension and aligned-fiber micrographs.">
 {% elsif include.topic == "suspension-coating" %}
-<img class="pub-art pub-art--photo" src="{{ '/images/pub/pub-suspension-coating.png' | relative_url }}" alt="Experimental setup and data from 'Particulate suspension coating of capillary tubes' — pressurized syringe driving suspension through a capillary, with velocity and Ca/h plots.">
+<img class="pub-art pub-art--photo" src="{{ '/images/pub/pub-suspension-coating.png' | relative_url }}" loading="lazy" decoding="async" alt="Experimental setup and data from 'Particulate suspension coating of capillary tubes' — pressurized syringe driving suspension through a capillary, with velocity and Ca/h plots.">
 {% endif %}
