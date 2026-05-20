@@ -220,8 +220,8 @@ spec for their innovations
 </div>
 
 <div class="pepsico-pair">
-  <img src="/images/IMG_2100.png" alt="PepsiCo office" loading="lazy" decoding="async">
-  <img src="/images/IMG_2162.png" alt="PepsiCo office" loading="lazy" decoding="async">
+  <img src="/images/IMG_2100.jpg" alt="PepsiCo office" loading="lazy" decoding="async">
+  <img src="/images/IMG_2162.jpg" alt="PepsiCo office" loading="lazy" decoding="async">
 </div>
 
 {% include ornament.html topic="photo" %}
