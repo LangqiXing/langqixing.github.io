@@ -219,8 +219,10 @@ spec for their innovations
 我曾在 [百事](https://www.pepsico.com/#) 担任研发实习生，工作氛围很好，还有源源不断的好吃的。😆 我借助 Excel、Python 模块和 Power BI 等 AI 工具，从百事常用原料中抽象出通用的参数与规格要求，并为产品研发人员搭建了一份可复用、基于知识库的新原料规格基线，支持他们的创新工作。
 </div>
 
-| ----------------------------------- | ----------------------------------- |
-| ![pepsico](/images/IMG_2100.png) | ![pepsico](/images/IMG_2162.png) |
+<div class="pepsico-pair">
+  <img src="/images/IMG_2100.png" alt="PepsiCo office" loading="lazy" decoding="async">
+  <img src="/images/IMG_2162.png" alt="PepsiCo office" loading="lazy" decoding="async">
+</div>
 
 {% include ornament.html topic="photo" %}
 

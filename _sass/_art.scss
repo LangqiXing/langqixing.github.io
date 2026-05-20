@@ -46,6 +46,25 @@ html, body, .page__title, .page__content, .archive,
   transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 
+/* Themed text selection — matches the site palette instead of the
+   browser-default blue. Coral wash on light, gold wash on dark. */
+::selection {
+  background: rgba($art-coral, 0.32);
+  color: $art-ink;
+  text-shadow: none;
+}
+::-moz-selection {
+  background: rgba($art-coral, 0.32);
+  color: $art-ink;
+  text-shadow: none;
+}
+
+[data-theme="dark"] ::selection,
+[data-theme="dark"] ::-moz-selection {
+  background: rgba($art-gold, 0.38);
+  color: #fff4d1;
+}
+
 /* Performance: tell the browser that the inside of these heavily-decorated
    cards doesn't affect anything outside them. Shrinks the rect the browser
    has to repaint when (e.g.) a hover or tilt animates. */
@@ -1081,6 +1100,32 @@ a {
   &.is-written {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   PepsiCo image pair — replaces the old markdown table so the images can
+   carry loading="lazy" and decoding="async". They're large source files
+   (multi-MB each) so deferring their fetch until in-view matters.
+   ========================================================================== */
+
+.pepsico-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin: 1rem 0 2rem;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--art-line);
+    box-shadow: 0 0.7rem 1.4rem rgba($art-ink, 0.08);
+  }
+
+  @include breakpoint(max-width $medium) {
+    grid-template-columns: 1fr;
   }
 }
 
