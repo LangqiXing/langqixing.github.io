@@ -38,25 +38,75 @@ redirect_from:
   </aside>
 </div>
 
-<div lang="en" markdown="1">
-🧪 My research focuses on improving drug delivery in clogged blood vessels, especially in dead-end vessel geometries where transport is very slow. By engineering solute concentration gradients and tailoring microchannel surface properties, I study how to control particle motion and significantly accelerate transport, reducing delivery times from days to hours. Building on this, I developed tunable hydrogel “beacons” that generate sustained chemical gradients to attract, repel, sort, and organize particles without pumps or external power.
+<section class="bio-pages" data-bio-pages aria-label="About me, paged">
+  <div class="bio-pages__viewport">
+    <ol class="bio-pages__track">
+      <li class="bio-page" data-page>
+        <p class="bio-page__kicker">
+          <span lang="en">01 · Research</span><span lang="zh">第一页 · 研究</span>
+        </p>
+        <div class="bio-page__icon" aria-hidden="true">🧪</div>
+        <p class="bio-page__body">
+          <span lang="en">My research focuses on improving drug delivery in clogged blood vessels, especially in dead-end vessel geometries where transport is very slow. By engineering solute concentration gradients and tailoring microchannel surface properties, I study how to control particle motion and significantly accelerate transport, reducing delivery times from days to hours. Building on this, I developed tunable hydrogel “beacons” that generate sustained chemical gradients to attract, repel, sort, and organize particles without pumps or external power.</span>
+          <span lang="zh">我的研究聚焦于改善血管堵塞处的药物输运，尤其是输运极慢的死端血管几何结构。通过设计溶质浓度梯度并定制微通道表面性质，我研究如何控制颗粒运动、显著加速输运过程，把药物到达时间从几天压缩到几小时。在此基础上，我开发了可调谐的水凝胶「信标」——它们能产生持续的化学梯度，在不依赖泵或外部能源的情况下吸引、排斥、分选并组织颗粒。</span>
+        </p>
+      </li>
 
-🔬 I have passion for improving people’s lives and protecting the environment began to take shape. My undergraduate research reflected these interests, focusing on capillary flows in suspensions and cohesive grains for dust removal, as well as modeling the physics of rockslides and avalanches.
+      <li class="bio-page" data-page>
+        <p class="bio-page__kicker">
+          <span lang="en">02 · Roots</span><span lang="zh">第二页 · 起点</span>
+        </p>
+        <div class="bio-page__icon" aria-hidden="true">🔬</div>
+        <p class="bio-page__body">
+          <span lang="en">My passion for improving people's lives and protecting the environment began to take shape during undergrad. My research at UCSB reflected those interests — capillary flows in suspensions, cohesive grains for dust removal, and modelling the physics of rockslides and avalanches.</span>
+          <span lang="zh">我对改善人们的生活、保护环境的热情是从本科阶段开始成形的。在 UCSB 的研究反映了这种兴趣——悬浮液中的毛细流动、用黏性颗粒去除粉尘，以及对滑坡和雪崩物理过程的建模。</span>
+        </p>
+      </li>
 
-📖 I was the vice president of the UCSB student chapter of the American Institute of Chemical Engineers (AIChE). In my spare time, I enjoy writing songs and rehearse in the band. I also loves playing basketball with friends.
+      <li class="bio-page" data-page>
+        <p class="bio-page__kicker">
+          <span lang="en">03 · Outside the lab</span><span lang="zh">第三页 · 实验室之外</span>
+        </p>
+        <div class="bio-page__icon" aria-hidden="true">📖</div>
+        <p class="bio-page__body">
+          <span lang="en">I was the vice president of the UCSB student chapter of the American Institute of Chemical Engineers (AIChE). In my spare time I write songs and rehearse with my band, and play a lot of basketball with friends.</span>
+          <span lang="zh">我曾担任 UCSB 美国化学工程师协会（AIChE）学生分会副主席。业余时间我写歌、和乐队一起排练，也喜欢和朋友打篮球。</span>
+        </p>
+      </li>
 
-👬 I am willing to assisting others on their path in the world of microfluidics and academia.
-</div>
+      <li class="bio-page" data-page>
+        <p class="bio-page__kicker">
+          <span lang="en">04 · Open door</span><span lang="zh">第四页 · 敞开的门</span>
+        </p>
+        <div class="bio-page__icon" aria-hidden="true">👬</div>
+        <p class="bio-page__body">
+          <span lang="en">I'm happy to help others find their way into the world of microfluidics and academia — reach out anytime.</span>
+          <span lang="zh">我乐意陪伴更多人走进微流控和学术的世界——欢迎随时联系。</span>
+        </p>
+      </li>
+    </ol>
+  </div>
 
-<div lang="zh" markdown="1">
-🧪 我的研究聚焦于改善血管堵塞处的药物输运，尤其是输运极慢的死端血管几何结构。通过设计溶质浓度梯度并定制微通道表面性质，我研究如何控制颗粒运动、显著加速输运过程，把药物到达时间从几天压缩到几小时。在此基础上，我开发了可调谐的水凝胶「信标」——它们能产生持续的化学梯度，在不依赖泵或外部能源的情况下吸引、排斥、分选并组织颗粒。
-
-🔬 我对改善人们的生活、保护环境一直怀有热情。本科阶段的研究就反映了这种兴趣，涉及悬浮液中的毛细流动、用粘性颗粒去除粉尘，以及对滑坡和雪崩物理过程的建模。
-
-📖 我曾担任 UCSB 美国化学工程师协会（AIChE）学生分会副主席。业余时间我喜欢写歌，在乐队里排练。也喜欢和朋友打篮球。
-
-👬 我也乐意陪伴更多人走进微流控和学术的世界。
-</div>
+  <nav class="bio-pages__nav" aria-label="Page controls">
+    <button class="bio-pages__btn" type="button" data-page-prev aria-label="Previous page">
+      <span aria-hidden="true">‹</span>
+    </button>
+    <ol class="bio-pages__dots" role="tablist" aria-label="Jump to page">
+      <li><button type="button" data-page-dot="0" class="is-active" aria-label="Page 1"></button></li>
+      <li><button type="button" data-page-dot="1" aria-label="Page 2"></button></li>
+      <li><button type="button" data-page-dot="2" aria-label="Page 3"></button></li>
+      <li><button type="button" data-page-dot="3" aria-label="Page 4"></button></li>
+    </ol>
+    <button class="bio-pages__btn" type="button" data-page-next aria-label="Next page">
+      <span aria-hidden="true">›</span>
+    </button>
+    <span class="bio-pages__counter" aria-live="polite">
+      <span data-page-current>1</span>
+      <span class="bio-pages__counter-sep">/</span>
+      <span>4</span>
+    </span>
+  </nav>
+</section>
 
 {% include ornament.html topic="lab" %}
 

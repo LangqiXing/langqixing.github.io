@@ -109,22 +109,6 @@ html[data-theme="dark"] {
   background-clip: padding-box;
 }
 
-/* Drop caps — first letter of the bio paragraphs grows to a 3-line
-   serif initial. Print-magazine touch on the home page only. We target
-   the first paragraph inside each lang block so it works in both
-   English and Chinese. */
-.home-page .page__content > div[lang] > p:first-child::first-letter,
-.home-page .page__content > div[lang][markdown] > p:first-child::first-letter {
-  float: left;
-  margin: 0.08em 0.12em -0.05em 0;
-  padding-right: 0.04em;
-  font-family: $serif;
-  font-weight: 700;
-  font-size: 3.4em;
-  line-height: 0.86;
-  color: $art-coral;
-}
-
 /* Performance: tell the browser that the inside of these heavily-decorated
    cards doesn't affect anything outside them. Shrinks the rect the browser
    has to repaint when (e.g.) a hover or tilt animates.
@@ -1191,6 +1175,210 @@ a {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ==========================================================================
+   Bio newspaper carousel — four bio "pages" on the home page that you can
+   slide through with arrows / dots / keyboard / swipe. Each page sits in
+   a paper-textured spread so the four read as facing pages in a small
+   broadsheet rather than four loose paragraphs.
+   ========================================================================== */
+
+.bio-pages {
+  position: relative;
+  margin: 1.4rem 0 2.6rem;
+  padding: clamp(1.1rem, 2.6vw, 1.6rem) clamp(1rem, 2.4vw, 1.6rem) 0.9rem;
+  border: 1px solid $art-line;
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(#fff, 0.94), rgba($art-paper, 0.78)),
+    repeating-linear-gradient(0deg,
+      rgba($art-ink, 0.025) 0,
+      rgba($art-ink, 0.025) 1px,
+      transparent 1px,
+      transparent 24px);
+  box-shadow: 0 0.9rem 2rem rgba($art-ink, 0.07);
+  contain: layout style;
+  /* Hairline column rule down the middle to evoke a newspaper spread */
+  &:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 1.1rem;
+    bottom: 4rem;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba($art-ink, 0.1), transparent);
+    pointer-events: none;
+  }
+}
+
+.bio-pages__viewport {
+  overflow: hidden;
+  margin: 0 -0.2rem 0.9rem;
+  position: relative;
+}
+
+.bio-pages__track {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.bio-page {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: 0.4rem 0.4rem 0.2rem;
+  outline: none;
+  /* Vertical-rhythm padding so each page has the same baseline gap */
+  display: grid;
+  grid-template-columns: 3.4rem 1fr;
+  gap: 0.85rem 1rem;
+  align-items: start;
+}
+
+.bio-page__kicker {
+  grid-column: 1 / -1;
+  margin: 0 0 0.3rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba($art-ink, 0.12);
+  font-family: $sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: darken($art-coral, 6%);
+}
+
+.bio-page__icon {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 2.4rem;
+  line-height: 1;
+  padding-top: 0.05em;
+}
+
+.bio-page__body {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0;
+  font-family: $serif;
+  font-size: 1.02rem;
+  line-height: 1.78;
+  color: var(--art-ink);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ----- Navigation row ----- */
+
+.bio-pages__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed rgba($art-ink, 0.16);
+  position: relative;
+}
+
+.bio-pages__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border: 1px solid var(--art-line);
+  border-radius: 999px;
+  background: var(--art-surface);
+  color: var(--art-ink);
+  font-family: $serif;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover, &:focus-visible {
+    background: var(--art-surface-strong);
+    border-color: rgba($art-coral, 0.45);
+    color: darken($art-coral, 4%);
+    outline: none;
+  }
+  &[data-page-prev]:hover { transform: translateX(-2px); }
+  &[data-page-next]:hover { transform: translateX(2px); }
+}
+
+.bio-pages__dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li { display: inline-flex; }
+
+  button {
+    width: 0.55rem;
+    height: 0.55rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba($art-ink, 0.22);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.22s ease, width 0.22s ease;
+
+    &.is-active {
+      background: $art-coral;
+      width: 1.4rem;
+      border-radius: 999px;
+    }
+    &:hover:not(.is-active) { background: rgba($art-ink, 0.4); }
+  }
+}
+
+.bio-pages__counter {
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-25%);
+  font-family: $serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--art-muted);
+}
+
+.bio-pages__counter-sep { margin: 0 0.18em; opacity: 0.6; }
+
+@include breakpoint(max-width $medium) {
+  .bio-page {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  .bio-page__icon {
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .bio-page__body { grid-column: 1; grid-row: 3; }
+  .bio-pages__counter { display: none; }
+  .bio-pages:before { left: 0; right: 0; top: auto; bottom: 5rem; width: auto; height: 1px; background: linear-gradient(90deg, transparent, rgba($art-ink, 0.1), transparent); }
+}
+
+[data-theme="dark"] .bio-pages {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    repeating-linear-gradient(0deg,
+      rgba(255, 255, 255, 0.025) 0,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 24px);
 }
 
 /* ==========================================================================
