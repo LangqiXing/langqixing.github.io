@@ -2996,6 +2996,41 @@ html.lx-splash-on { overflow: hidden; }
 }
 
 /* ==========================================================================
+   Footer links row — LabMap + RSS, centered under the signature
+   ========================================================================== */
+
+.lx-footer-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.5rem 0 0.6rem;
+  font-family: $sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+
+  a {
+    color: var(--art-muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    transition: color 0.2s ease;
+
+    &:hover { color: $art-coral; }
+  }
+
+  .lx-rss svg {
+    flex: 0 0 auto;
+    transition: transform 0.2s ease;
+  }
+  .lx-rss:hover svg { transform: rotate(-8deg) scale(1.08); }
+}
+
+.lx-footer-sep {
+  opacity: 0.5;
+}
+
+/* ==========================================================================
    Footer LX signature — draws itself when the footer scrolls into view
    ========================================================================== */
 

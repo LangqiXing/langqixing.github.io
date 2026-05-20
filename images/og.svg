@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="ogWashA" cx="14%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#2f7d7a" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#2f7d7a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ogWashB" cx="88%" cy="82%" r="55%">
+      <stop offset="0%" stop-color="#c9543f" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#c9543f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ogWashC" cx="62%" cy="14%" r="40%">
+      <stop offset="0%" stop-color="#b6892c" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#b6892c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ogStripe" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#2f7d7a"/>
+      <stop offset="50%"  stop-color="#b6892c"/>
+      <stop offset="100%" stop-color="#c9543f"/>
+    </linearGradient>
+    <radialGradient id="ogBeacon" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#c9543f"/>
+      <stop offset="100%" stop-color="#7a2a1d"/>
+    </radialGradient>
+    <filter id="ogRough" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="9"/>
+      <feDisplacementMap in="SourceGraphic" scale="2.4"/>
+    </filter>
+  </defs>
+
+  <!-- Paper canvas -->
+  <rect width="1200" height="630" fill="#f8f5ef"/>
+  <rect width="1200" height="630" fill="url(#ogWashA)"/>
+  <rect width="1200" height="630" fill="url(#ogWashB)"/>
+  <rect width="1200" height="630" fill="url(#ogWashC)"/>
+
+  <!-- Top accent stripe -->
+  <rect x="0" y="0" width="1200" height="6" fill="url(#ogStripe)"/>
+
+  <!-- Right-side hand-drawn research vignette -->
+  <g transform="translate(720 130)" filter="url(#ogRough)" fill="none"
+     stroke="#1f2a30" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Microfluidic channel (dead-end) -->
+    <path d="M0 220 L300 220 L300 280 L0 280 Z" stroke-width="3"/>
+    <!-- Flow-in arrow at left -->
+    <path d="M-30 250 L0 250 M-20 240 L0 250 L-20 260" stroke-width="2.4"/>
+    <!-- Particles inside the channel -->
+    <g fill="#c9543f" fill-opacity="0.75" stroke-width="1.2">
+      <circle cx="40"  cy="248" r="6"/>
+      <circle cx="70"  cy="260" r="5"/>
+      <circle cx="105" cy="244" r="6.5"/>
+      <circle cx="140" cy="262" r="4.5"/>
+      <circle cx="175" cy="248" r="5.5"/>
+      <circle cx="208" cy="260" r="5"/>
+      <circle cx="240" cy="246" r="6"/>
+      <circle cx="270" cy="262" r="4.8"/>
+    </g>
+    <!-- Hydrogel beacon (radiating arcs) -->
+    <g transform="translate(220 90)">
+      <circle r="18" stroke-width="3" fill="url(#ogBeacon)"/>
+      <circle r="42" stroke-width="2"   stroke-opacity="0.6" stroke-dasharray="5 7"/>
+      <circle r="66" stroke-width="1.6" stroke-opacity="0.4" stroke-dasharray="4 8"/>
+    </g>
+    <!-- Droplet from a pipette on the left -->
+    <path d="M50 0 L50 60 L70 60 L70 0 Z" stroke-width="2.4"/>
+    <path d="M50 0 L70 0" stroke-width="2.4"/>
+    <path d="M52 70 C 42 92, 42 116, 60 130 C 78 116, 78 92, 68 70 Z"
+          stroke-width="2.4" fill="#2f7d7a" fill-opacity="0.16"/>
+    <circle cx="60" cy="142" r="3.2" fill="#2f7d7a" stroke-width="1.6"/>
+  </g>
+
+  <!-- Hand-drawn double-rule under the name -->
+  <g transform="translate(80 350)" filter="url(#ogRough)">
+    <rect x="0" y="0" width="160" height="3" fill="#b6892c" fill-opacity="0.9"/>
+    <rect x="0" y="9" width="120" height="3" fill="#b6892c" fill-opacity="0.55"/>
+  </g>
+
+  <!-- Type stack: kicker / name / sub / tags -->
+  <text x="80" y="190" font-family="Georgia, 'Times New Roman', serif"
+        font-size="28" font-style="italic" fill="#c9543f" fill-opacity="0.85">
+    a visual notebook · 视觉笔记
+  </text>
+
+  <text x="80" y="320" font-family="Georgia, 'Times New Roman', serif"
+        font-size="120" font-weight="700" fill="#1f2a30" letter-spacing="-2">
+    Langqi Xing
+  </text>
+
+  <text x="80" y="410" font-family="Georgia, 'Times New Roman', serif"
+        font-size="36" font-style="italic" fill="#1f2a30" fill-opacity="0.78">
+    邢朗齐 · Ph.D. candidate at Northeastern
+  </text>
+
+  <text x="80" y="470" font-family="Helvetica, Arial, sans-serif"
+        font-size="26" font-weight="600" fill="#2f7d7a" letter-spacing="2">
+    MICROFLUIDICS  ·  PARTICLE TRANSPORT  ·  HYDROGEL BEACONS
+  </text>
+
+  <!-- Bottom byline + URL with coral seal -->
+  <g transform="translate(80 565)">
+    <circle cx="0" cy="0" r="10" fill="#c9543f"/>
+    <text x="24" y="6" font-family="Helvetica, Arial, sans-serif"
+          font-size="22" font-weight="700" fill="#1f2a30" letter-spacing="2">
+      LANGQIXING.COM
+    </text>
+    <text x="-24" y="6" text-anchor="end"
+          font-family="Georgia, serif" font-style="italic"
+          font-size="22" fill="#1f2a30" fill-opacity="0">·</text>
+  </g>
+
+  <!-- Decorative LX monogram bottom-right corner -->
+  <g transform="translate(1080 540)" fill="none" stroke-linecap="round"
+     stroke-linejoin="round" stroke="#1f2a30">
+    <rect x="-50" y="-50" width="100" height="100" rx="14" fill="#1f2a30"/>
+    <path d="M-26 -28 L-26 24 L-2 24" stroke="#fbf6ec" stroke-width="6"/>
+    <path d="M6 -28 L34 24 M34 -28 L6 24" stroke="#c9543f" stroke-width="6"/>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Ink tile -->
+  <rect width="64" height="64" rx="12" fill="#1f2a30"/>
+  <!-- Subtle inner highlight to read at small sizes -->
+  <rect x="2" y="2" width="60" height="60" rx="10" fill="none"
+        stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- L stroke — paper-cream -->
+  <path d="M16 14 L16 49 L30 49"
+        fill="none" stroke="#fbf6ec" stroke-width="6"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- X strokes — coral -->
+  <path d="M36 14 L52 49 M52 14 L36 49"
+        fill="none" stroke="#c9543f" stroke-width="6"
+        stroke-linecap="round"/>
+  <!-- Small coral seal dot bottom-right — only visible at larger sizes -->
+  <circle cx="54" cy="54" r="3" fill="#c9543f"/>
+</svg>
