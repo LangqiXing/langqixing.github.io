@@ -10,7 +10,7 @@ redirect_from:
 <div class="home-intro" data-reveal>
   <div id="home-flow" class="home-intro__flow" aria-hidden="true"></div>
   <div class="home-intro__copy">
-    <p lang="en">⚙️ I am a fourth-year Ph.D. candidate majoring in Mechanical and Industrial Engineering at Northeastern University. I completed my bachelor’s degree in Chemical Engineering with a minor in History of Art and Architecture at UC Santa Barbara,</p>
+    <p lang="en">⚙️ I am a fourth-year Ph.D. candidate majoring in Mechanical and Industrial Engineering at Northeastern University. I completed my bachelor’s degree in Chemical Engineering with a minor in History of Art and Architecture at UC Santa Barbara.</p>
     <p lang="zh">⚙️ 我是美国东北大学机械与工业工程系的四年级博士候选人。本科毕业于加州大学圣巴巴拉分校（UCSB），主修化学工程，辅修艺术与建筑史。</p>
   </div>
   <figure class="home-intro__photo">
