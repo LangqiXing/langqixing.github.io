@@ -267,16 +267,16 @@ spec for their innovations
   </p>
   <div class="film-marquee__viewport">
     <div class="marquee-track">
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-02.jpg" alt="" loading="lazy"></a>
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-05.jpg" alt="" loading="lazy"></a>
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-08.jpg" alt="" loading="lazy"></a>
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-11.jpg" alt="" loading="lazy"></a>
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-14.jpg" alt="" loading="lazy"></a>
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-17.jpg" alt="" loading="lazy"></a>
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-20.jpg" alt="" loading="lazy"></a>
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-23.jpg" alt="" loading="lazy"></a>
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-26.jpg" alt="" loading="lazy"></a>
-      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/slide-29.jpg" alt="" loading="lazy"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-02.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-05.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-08.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-11.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-14.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-17.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-20.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-23.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-26.jpg" alt="" loading="lazy" decoding="async"></a>
+      <a class="marquee-frame" href="/gallery/#film"><img src="/images/film/thumbs/slide-29.jpg" alt="" loading="lazy" decoding="async"></a>
     </div>
   </div>
 </section>

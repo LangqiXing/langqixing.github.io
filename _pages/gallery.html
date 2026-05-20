@@ -54,7 +54,7 @@ redirect_from:
          {% if meta.date %}data-date="{{ meta.date }}"{% endif %}
          {% if meta.location %}data-location="{{ meta.location }}"{% endif %}
          {% if meta.note %}data-note="{{ meta.note }}"{% endif %}>
-        <img src="{{ base_path }}/images/film/slide-{{ n }}.jpg" alt="Film photograph {{ i }}" loading="lazy">
+        <img src="{{ base_path }}/images/film/thumbs/slide-{{ n }}.jpg" alt="Film photograph {{ i }}" loading="lazy" decoding="async">
       </a>
     {% endfor %}
   </div>
