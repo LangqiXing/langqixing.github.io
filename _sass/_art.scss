@@ -65,6 +65,66 @@ html, body, .page__title, .page__content, .archive,
   color: #fff4d1;
 }
 
+/* Themed scrollbar — coral→gold gradient thumb on a faint ink-toned track.
+   Firefox gets the (limited) `scrollbar-color` API; WebKit gets the
+   richer ::-webkit-scrollbar-* model. Both modes color-aware. */
+html {
+  scrollbar-color: rgba($art-coral, 0.55) rgba($art-ink, 0.06);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: rgba($art-ink, 0.04);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba($art-coral, 0.6), rgba($art-gold, 0.6));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, $art-coral, $art-gold);
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-corner { background: transparent; }
+
+[data-theme="dark"] html,
+html[data-theme="dark"] {
+  scrollbar-color: rgba($art-gold, 0.6) rgba(255, 255, 255, 0.04);
+}
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba($art-gold, 0.65), rgba($art-teal, 0.65));
+  background-clip: padding-box;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, $art-gold, $art-teal);
+  background-clip: padding-box;
+}
+
+/* Drop caps — first letter of the bio paragraphs grows to a 3-line
+   serif initial. Print-magazine touch on the home page only. We target
+   the first paragraph inside each lang block so it works in both
+   English and Chinese. */
+.home-page .page__content > div[lang] > p:first-child::first-letter,
+.home-page .page__content > div[lang][markdown] > p:first-child::first-letter {
+  float: left;
+  margin: 0.08em 0.12em -0.05em 0;
+  padding-right: 0.04em;
+  font-family: $serif;
+  font-weight: 700;
+  font-size: 3.4em;
+  line-height: 0.86;
+  color: $art-coral;
+}
+
 /* Performance: tell the browser that the inside of these heavily-decorated
    cards doesn't affect anything outside them. Shrinks the rect the browser
    has to repaint when (e.g.) a hover or tilt animates.
@@ -131,6 +191,26 @@ body:before {
   height: 3px;
   background: linear-gradient(90deg, $art-teal, $art-gold 50%, $art-coral);
   z-index: 30;
+  transition: background 0.6s ease;
+}
+
+/* Per-page accent shift — each section subtly leans into a different
+   color so the multi-page site doesn't feel monochromatic. */
+.music-page body:before {
+  /* Warm amber lean — vinyl & late-night listening */
+  background: linear-gradient(90deg, $art-gold, $art-coral 50%, lighten($art-gold, 8%));
+}
+.gallery-page body:before {
+  /* Sepia / faded photo lean — paper edges */
+  background: linear-gradient(90deg, $art-cream, $art-gold 40%, $art-coral 80%, $art-cream);
+}
+.publications-page body:before {
+  /* Teal academic lean — clean, scholarly */
+  background: linear-gradient(90deg, darken($art-teal, 6%), lighten($art-teal, 12%) 50%, $art-gold);
+}
+.projects-page body:before {
+  /* Coral experimental lean — lab energy */
+  background: linear-gradient(90deg, $art-coral, $art-gold 50%, $art-coral);
 }
 
 /* Subtle paper grain over the whole canvas */
